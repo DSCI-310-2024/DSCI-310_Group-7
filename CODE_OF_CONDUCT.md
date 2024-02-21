@@ -21,3 +21,6 @@ If a contributor breaches the code of conduct, a meeting will be arranged to dis
 
 ## Enforcement
 Incidents may be reported directly to the DSCI 310 teaching team at <tiffany.timbers@stat.ubc.ca>. 
+
+## Attribution
+This Code of Conduct is inspired by the tidyverse Code of Conduct, which was adapted from the Contributor Covenant, version 1.4, available at http://contributor-covenant.org/version/1/4.

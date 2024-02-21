@@ -2,7 +2,7 @@
 This guide describes how to propose a change to the project. 
 
 ## Changes
-This project will follow the "GitHub Flow" workflow. More can be read [here](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/materials/lectures/02-version-control-2.html). 
+This project will follow the "GitHub Flow" workflow. Detailed contributing guidelines can be found in the [DSCI 310 textbook](https://ubc-dsci.github.io/reproducible-and-trustworthy-workflows-for-data-science/materials/lectures/02-version-control-2.html). 
 * Unique branches should be created for each unit of work (e.g., a new feature or bug fix)
 * Please submit a pull request so that other contributors may review the changes before merging a branch back to main
 

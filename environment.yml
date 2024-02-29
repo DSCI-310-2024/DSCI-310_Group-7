@@ -1,0 +1,8 @@
+name: dsci-310-group-7-project
+channels:
+  - defaults
+dependencies:
+  - r-base=4.1
+  - r-tidyverse
+  - r-tidymodels
+  - r-cowplot

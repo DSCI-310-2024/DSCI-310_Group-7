@@ -48,16 +48,7 @@ If the setup does not work, please try one of the following solutions:
 2. Install IRkernel through ```install.packages('IRkernel')``` on an R console. The version used in this repository is 1.3.2. Then, open the notebook on Jupyter Lab. Open an R console and do step 6.
 
 ## Dependencies
-- R v4.3.2
-- jupyterlab v4.0.10
-- conda v23.11.0
-- renv v1.0.5
-- IRkernel v1.3.2
-- tidyverse v2.0.0
-- tidymodels v1.1.1
-- cowplot v1.1.3
-- car v3.1-2
-- corrplot v0.92
+- [Docker](https://www.docker.com/) is used to virtualise the software dependencies for this project. The Docker image for this project is built from the `rocker/tidyverse:4.3.2` image. Additional dependencies are detailed in the [`Dockerfile`](Dockerfile).
 
 ## License
 See [License file](https://github.com/DSCI-310-2024/dsci-310_group-7_wine-quality-prediction?tab=License-1-ov-file).

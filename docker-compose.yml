@@ -1,0 +1,9 @@
+services:
+  analysis-env:
+    image: ricochn/dsci-310_group-7_wine-quality-prediction:latest
+    ports:
+      - "8787:8787"
+    volumes:
+      - .:/home/rstudio/workspace
+    environment:
+      PASSWORD: group7wine

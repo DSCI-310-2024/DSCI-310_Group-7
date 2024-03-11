@@ -9,13 +9,13 @@
 library(tidyverse)
 
 main <- function() {
-  wine_raw <- read_delim("https://archive.ics.uci.edu/ml/\
-                         machine-learning-databases/wine-quality/\
-                         winequality-red.csv", delim = ";")
+  wine_raw <- read_delim("https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-red.csv", delim = ";")
   new_names <- c("fixed_acidity", "volatile_acidity", "citric_acid",
                  "residual_sugar", "chlorides", "free_sulfur_dioxide",
                  "total_sulfur_dioxide", "density", "pH", "sulphates",
                  "alcohol", "quality")
   colnames(wine_raw) <- new_names
-  write_csv(wine_raw, "results/wine_raw.csv")
+  write_csv(wine_raw, "data/wine_raw.csv")
 }
+
+main()

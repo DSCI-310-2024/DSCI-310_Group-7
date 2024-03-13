@@ -4,7 +4,7 @@
 "This script conducts the multivariate regression for this analysis, and stores
 the results in in RDA files.
 
-Usage: Rscript scripts/wine_eda_visualizations.R --input=<input> --out_dir=<out_dir>
+Usage: Rscript scripts/wine_modelling.R --input=<input> --out_dir=<out_dir>
 
 Options:
 --input=<input>       Path (including filename) to training data (csv file)

@@ -8,12 +8,12 @@ Usage: Rscript scripts/wine_eda_visualizations.R --input=<input> --out_dir=<out_
 
 Options:
 --input=<input>       Path (including filename) to training data (csv file)
---out_dir=<out_dir>   Path to directory where the processed data should be written
+--out_dir=<out_dir>   Path to directory where the visualizations should be written
 " -> doc
 
 oct <- docopt(doc)
 
-create_visualizations <- function(train, out_dir) {
+create_visualizations <- function(input, out_dir) {
   
   # Converting quality as a categorical factor.
   wine_train_categorical <- train %>%

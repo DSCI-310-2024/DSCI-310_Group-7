@@ -4,7 +4,7 @@
 "This script creates summary statistics and some figures that will
 be used in the document. Histograms are in a separate document.
 
-Usage: Rscript src/wine_summary_statistics.R --input=<input> --output=<output> --out_dir=<out_dir>
+Usage: Rscript scripts/wine_summary_statistics.R --input=<input> --output=<output> --out_dir=<out_dir>
 " -> doc
 
 oct <- docopt(doc)

@@ -4,7 +4,7 @@
 "This script conducts the splitting of the data
 into training and testing datasets.
 
-Usage: Rscript src/wine_preprocess.R --input=<input> --out_dir=<out_dir>
+Usage: Rscript scripts/wine_preprocess.R --input=<input> --out_dir=<out_dir>
 " -> doc
 
 library(tidyverse)

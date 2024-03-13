@@ -5,6 +5,10 @@
 used in the EDA section of the analysis.
 
 Usage: Rscript scripts/wine_eda_visualizations.R --input=<input> --out_dir=<out_dir>
+
+Options:
+--input=<input>       Path (including filename) to training data (csv file)
+--out_dir=<out_dir>   Path to directory where the processed data should be written
 " -> doc
 
 oct <- docopt(doc)

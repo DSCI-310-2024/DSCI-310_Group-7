@@ -4,7 +4,12 @@
 "This script creates summary statistics and some figures that will
 be used in the document. Histograms are in a separate document.
 
-Usage: Rscript scripts/wine_summary_statistics.R --input=<input> --output=<output> --out_dir=<out_dir>
+Usage: Rscript scripts/wine_summary_statistics.R --train=<train> --test=<test> --out_dir=<out_dir>
+
+Options:
+--train=<train>       Path (including filename) raw training data (csv file)
+--test=<test>         Path (including filename) raw testing data (csv file)
+--out_dir=<out_dir>   Path to directory where the processed data should be written
 " -> doc
 
 oct <- docopt(doc)
@@ -31,4 +36,4 @@ create_summaries <- function(train, test, out_dir) {
   
 }
 
-create_summaries(opt[["--input"]], opt[["--output"]], opt[["--out_dir"]])
+create_summaries(opt[["--train"]], opt[["--test"]], opt[["--out_dir"]])

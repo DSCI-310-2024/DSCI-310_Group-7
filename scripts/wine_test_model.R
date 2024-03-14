@@ -11,6 +11,12 @@ Options:
 --out_dir=<out_dir>   Path to directory where the model should be written to
 " -> doc
 
+library(tidyverse)
+library(tidymodels)
+library(car)
+library(docopt)
+
+
 oct <- docopt(doc)
 
 test_model <- function(input, out_dir) {

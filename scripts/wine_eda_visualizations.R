@@ -11,6 +11,13 @@ Options:
 --out_dir=<out_dir>   Path to directory where the visualizations should be written
 " -> doc
 
+library(tidyverse)
+library(tidymodels)
+library(cowplot)
+library(car)
+library(corrplot)
+library(docopt)
+
 oct <- docopt(doc)
 
 create_visualizations <- function(input, out_dir) {

@@ -12,6 +12,13 @@ Options:
 --out_dir=<out_dir>   Path to directory where the processed data should be written
 " -> doc
 
+library(tidyverse)
+library(tidymodels)
+library(cowplot)
+library(car)
+library(corrplot)
+library(docopt)
+
 oct <- docopt(doc)
 
 create_summaries <- function(train, test, out_dir) {

@@ -1,10 +1,9 @@
 # Author: Rico Chan, Rui Xiang Yu, Kevin Yu
 # Date: 2024 March 13
 
-"This script creates the histogram and the correlation matrix 
-used in the EDA section of the analysis.
+"This script creates the histogram and the correlation matrix used in the EDA section of the analysis.
 
-Usage: Rscript scripts/wine_eda_visualizations.R --input=<input> --out_dir=<out_dir>
+Usage: scripts/wine_eda_visualizations.R --input=<input> --out_dir=<out_dir>
 
 Options:
 --input=<input>       Path (including filename) to training data (csv file)
@@ -18,16 +17,19 @@ library(car)
 library(corrplot)
 library(docopt)
 
-oct <- docopt(doc)
+opt <- docopt(doc)
 
 create_visualizations <- function(input, out_dir) {
   
+  # Read in input file
+  wine_train <- read_csv(input)
+  
   # Converting quality as a categorical factor.
-  wine_train_categorical <- train %>%
+  wine_train_categorical <- wine_train %>%
     mutate(quality = as.factor(quality))
   
   # Setting font size.
-  font_size = 30
+  font_size = 10.5
   
   options(repr.plot.width = 60, repr.plot.height = 40)
   
@@ -133,27 +135,29 @@ create_visualizations <- function(input, out_dir) {
                      ncol=4, nrow =3)
   
   # Adding a title.
-  title_hist <- ggdraw() +
-    draw_label(
-      "Figure 2. Histogram of the input variables, color-coded by their respective quality. In the last plot, histogram of each wine quality.",
-      fontface = 'bold', x = 0, hjust = 0, size = font_size + 20) +
-    theme(plot.margin = margin(0, 0, 0, 7)) # alignment
+  # title_hist <- ggdraw() +
+  #   draw_label(
+  #     "Figure 2. Histogram of the input variables, color-coded by their respective quality. In the last plot, histogram of each wine quality.",
+  #     fontface = 'bold', x = 0, hjust = 0, size = font_size + 8) +
+  #   theme(plot.margin = margin(0, 0, 0, 7)) # alignment
   
   # Adding a common legend.
-  legend_hist <- get_legend(quality_hist + theme(legend.box.margin = margin(0, 0, 0, 12),
-                                                 legend.key.size = unit(3, 'cm'),
+  legend_hist <- get_legend(quality_hist + theme(legend.box.margin = margin(0, 0, 0, 3),
+                                                 legend.key.size = unit(1, 'cm'),
                                                  legend.title = element_text(size = font_size)))
   
   # Putting the whole model together
   histogram <- plot_grid(
-                  plot_grid(title_hist, hists, ncol = 1, rel_heights = c(0.1, 1)),
+                  hists,
                   legend_hist,
                   rel_widths = c(4, .4)
   )
   
+  # Save the histograms as png
+  ggsave("results/histogram.png", histogram)
   
   # Creating the correlation matrix
-  wine_cors <- cor(train)
+  wine_cors <- cor(wine_train)
   
   # Change variable labels
   colnames(wine_cors) <- c("Fixed acidity", "Volatile acidity", "Citric acid", "Residual sugar", "Chlorides",
@@ -163,10 +167,11 @@ create_visualizations <- function(input, out_dir) {
                             "Free sulfur dioxide", "Total sulfur dioxide", "Density", "pH", "Sulphates",
                             "Alcohol", "Quality")
   
-  # Plot correlation matrix
+  # Plot correlation matrix, save as png
+  png(height=800, width = 800, file = "results/corrplot.png", type = "cairo")
   corr_plot <- corrplot(wine_cors, method = 'number',
-                        title = "Figure 3. Correlation Matrix of all Variables",
-                        mar=c(0,0,3,0))
+                        mar=c(0,0,3,0), number.cex=1.5)
+  dev.off()
   
   # Save visualizations into RDS files
   try({
@@ -177,4 +182,4 @@ create_visualizations <- function(input, out_dir) {
   
 }
 
-create_visualizations(opt[["--input"]], opt[["--out_dir"]])
+create_visualizations(opt$input, opt$out_dir)

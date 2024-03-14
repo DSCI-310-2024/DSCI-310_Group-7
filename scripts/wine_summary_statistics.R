@@ -1,10 +1,9 @@
 # Author: Rico Chan, Rui Xiang Yu, Kevin Yu
-# Date: 2024 March 13
+# Date: 2024 March 14
 
-"This script creates summary statistics and some figures that will
-be used in the document. Histograms are in a separate document.
+"This script creates summary statistics and some figures that will be used in the document. Histograms are in a separate document.
 
-Usage: Rscript scripts/wine_summary_statistics.R --train=<train> --test=<test> --out_dir=<out_dir>
+Usage: scripts/wine_summary_statistics.R --train=<train> --test=<test> --out_dir=<out_dir>
 
 Options:
 --train=<train>       Path (including filename) raw training data (csv file)
@@ -19,17 +18,21 @@ library(car)
 library(corrplot)
 library(docopt)
 
-oct <- docopt(doc)
+opt <- docopt(doc)
 
 create_summaries <- function(train, test, out_dir) {
   
+  # Load in training and testing data
+  training <- read_csv(train)
+  testing <- read_csv(test)
+  
   # Create a few EDA summary statistics, save into an RDS file
-  summary_counts <- data.frame(train_nrow = nrow(train),
-                              test_nrow = nrow(test),
+  summary_counts <- data.frame(train_nrow = nrow(training),
+                              test_nrow = nrow(testing),
                               num_nas = sum(is.na(train)) + sum(is.na(test)))
   
   # Means for each level of response variable "quality"
-  response_means <- train %>%
+  response_means <- training %>%
     mutate(quality = as.factor(quality)) %>%
     group_by(quality) %>%
     summarise_all(mean)
@@ -38,9 +41,9 @@ create_summaries <- function(train, test, out_dir) {
     dir.create(out_dir)
   })
   saveRDS(summary_counts, file = paste0(out_dir, "/summary_counts.rds"))
-  saveRDS(summary(train), file = paste0(out_dir, "/summary_statistics.rds"))
+  saveRDS(summary(training), file = paste0(out_dir, "/summary_statistics.rds"))
   saveRDS(response_means, file = paste0(out_dir, "/response_means.rds"))
   
 }
 
-create_summaries(opt[["--train"]], opt[["--test"]], opt[["--out_dir"]])
+create_summaries(opt$train, opt$test, opt$out_dir)

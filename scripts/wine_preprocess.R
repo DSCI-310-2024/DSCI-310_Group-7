@@ -30,7 +30,7 @@ main <- function(input, out_dir) {
   
   # write training and test data to csv files
   write_csv(wine_train, paste0(out_dir, "/training.csv"))
-  write_csv(wine_test, paste0(out_dir, "/test.csv"))
+  write_csv(wine_test, paste0(out_dir, "/testing.csv"))
 }
 
-main(opt$input, opt$out_dir)
+splitting(opt$input, opt$out_dir)

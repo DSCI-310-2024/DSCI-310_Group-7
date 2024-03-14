@@ -1,7 +1,7 @@
 # Author: Rico Chan, Rui Xiang Yu, Kevin Yu
 # Date: 2023 March 10
 
-# This script downloads the red wine quality dataset
+# This script downloads the red wine quality dataset and the basic EDA required
 # from the UCI Machine Learning Repository
 
 # Usage: Rscript download_data.R

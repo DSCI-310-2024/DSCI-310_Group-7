@@ -15,7 +15,7 @@ main <- function() {
                  "total_sulfur_dioxide", "density", "pH", "sulphates",
                  "alcohol", "quality")
   colnames(wine_raw) <- new_names
-  write_csv(wine_raw, "../data/wine_raw.csv")
+  write_csv(wine_raw, "data/wine_raw.csv")
 }
 
 main()

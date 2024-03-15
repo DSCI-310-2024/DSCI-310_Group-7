@@ -3,11 +3,12 @@
 
 "This script conducts the multivariate regression for this analysis, and stores the results in in RDA files.
 
-Usage: scripts/wine_modelling.R --input=<input> --out_dir=<out_dir>
+Usage: R/wine_modelling.R --input=<input> --out_dir_lm=<out_dir_lm> --out_dir_coef=<out_dir_coef>
 
 Options:
---input=<input>       Path (including filename) to training data (csv file)
---out_dir=<out_dir>   Path to directory where the model should be written to
+--input=<input>                 Path (including filename) to training data (csv file)
+--out_dir_lm=<out_dir_lm    >   Path/filename to directory where the model should be written to as an RDS object
+--out_dir_coef=<out_dir_coef>   Path/filename to directory where the model's coefficients should be written to
 " -> doc
 
 library(tidyverse)
@@ -19,7 +20,7 @@ library(docopt)
 
 opt <- docopt(doc)
 
-create_model <- function(input, out_dir) {
+create_model <- function(input, out_dir_lm, out_dir_coef) {
   
   # Read in input
   training <- read_csv(input)
@@ -43,13 +44,9 @@ create_model <- function(input, out_dir) {
     extract_fit_parsnip() %>%
     tidy()
   
-  # Save objects into RDS files
-   try({
-    dir.create(out_dir)
-  })
-  saveRDS(wine_lm_fit, file = paste0(out_dir, "/wine_lm_fit.rds"))
-  saveRDS(wine_coeffs, file = paste0(out_dir, "/wine_coeffs.rds"))
-  
+  # Save objects
+  write_csv(wine_coeffs, file.path(out_dir_coef))
+  saveRDS(wine_lm_fit, file.path(out_dir_lm))
 }
-
-create_model(opt$input, opt$out_dir)
+  
+create_model(opt$input, opt$out_dir_lm, opt$out_dir_coef)

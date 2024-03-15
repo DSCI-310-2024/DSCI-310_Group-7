@@ -3,7 +3,7 @@
 
 "This script takes the created model and tests it on the testing data. Produces accuracy metrics and a visualization
 
-Usage: scripts/wine_test_model.R --input=<input> --model=<model> --out_dir=<out_dir>
+Usage: R/wine_test_model.R --input=<input> --model=<model> --out_dir=<out_dir>
 
 Options:
 --input=<input>       Path (including filename) to testing data (csv file)

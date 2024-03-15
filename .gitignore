@@ -13,4 +13,5 @@
 
 # User-specific files
 **/.Ruserdata
-.Rproj.user
+**/.Rproj.user
+**/.Rproj

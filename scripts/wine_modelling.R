@@ -1,10 +1,9 @@
 # Author: Rico Chan, Rui Xiang Yu, Kevin Yu
 # Date: 2024 March 13
 
-"This script conducts the multivariate regression for this analysis, and stores
-the results in in RDA files.
+"This script conducts the multivariate regression for this analysis, and stores the results in in RDA files.
 
-Usage: Rscript scripts/wine_modelling.R --input=<input> --out_dir=<out_dir>
+Usage: scripts/wine_modelling.R --input=<input> --out_dir=<out_dir>
 
 Options:
 --input=<input>       Path (including filename) to training data (csv file)
@@ -18,22 +17,26 @@ library(car)
 library(corrplot)
 library(docopt)
 
-oct <- docopt(doc)
+opt <- docopt(doc)
 
 create_model <- function(input, out_dir) {
   
+  # Read in input
+  training <- read_csv(input)
+  
+  # Specify model
   lm_spec <- linear_reg() %>%
     set_engine("lm") %>%
     set_mode("regression")
   
   # Setting up the recipe.
-  wine_lm_recipe <- recipe(quality ~ ., data = input)
+  wine_lm_recipe <- recipe(quality ~ ., data = training)
   
   # Training the model.
   wine_lm_fit <- workflow() %>%
     add_recipe(wine_lm_recipe) %>%
     add_model(lm_spec) %>%
-    fit(data = input)
+    fit(data = training)
   
   # Pulling information of the coefficients in a tibble.
   wine_coeffs <- wine_lm_fit %>%
@@ -49,4 +52,4 @@ create_model <- function(input, out_dir) {
   
 }
 
-create_model(opt[["--input"]], opt[["--out_dir"]])
+create_model(opt$input, opt$out_dir)

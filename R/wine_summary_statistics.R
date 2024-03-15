@@ -1,7 +1,7 @@
 # Author: Rico Chan, Rui Xiang Yu, Kevin Yu
 # Date: 2024 March 14
 
-"This script creates summary statistics and some figures that will be used in the document. Histograms are in a separate document.
+"This script creates summary statistics that will be used in the document.
 
 Usage: R/wine_summary_statistics.R --train=<train> --out_dir=<out_dir>
 

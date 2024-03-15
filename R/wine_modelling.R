@@ -1,7 +1,7 @@
 # Author: Rico Chan, Rui Xiang Yu, Kevin Yu
 # Date: 2024 March 13
 
-"This script conducts the multivariate regression for this analysis, and stores the results in in RDA files.
+"This script conducts the multivariate regression for this analysis, stores the model in an RDS file and its coefficients in a CSV file.
 
 Usage: R/wine_modelling.R --input=<input> --out_dir_lm=<out_dir_lm> --out_dir_coef=<out_dir_coef>
 

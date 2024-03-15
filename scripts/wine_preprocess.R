@@ -19,7 +19,7 @@ set.seed(7)
 
 opt <- docopt(doc)
 
-main <- function(input, out_dir) {
+splitting <- function(input, out_dir) {
   # Read in the raw dataset
   wine <- read_csv(input)
   

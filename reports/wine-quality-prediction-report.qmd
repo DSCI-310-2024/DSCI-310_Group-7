@@ -1,0 +1,31 @@
+---
+title: "Predicting Wine Quality Using Multiple Linear Regression"
+author: "Rui Xiang Yu, Rico Chan, & Kevin Yu (Group 7)"
+format: 
+    html:
+        toc: true
+        toc-depth: 3
+    pdf:
+        toc: true
+        toc-depth: 3 
+        fig-pos: "H"
+bibliography: references.bib
+execute:
+    echo: false
+    warning: false
+editor: source
+---
+
+```{r}
+library(tidyverse)
+```
+
+## Summary
+This project analyzes different properties of wine and analyzes which properties affect the quality of wine positively and which properties affect it negatively, in order to predict red wine quality. We applied a multiple linear regression on a public-use dataset to discover how each property affects the quality of wine. Splitting the dataset into a 75/25 training/testing split, and applying a specified recipe for a multivariate regression, we obtained decent RMSE and MAE values of 0.67 and 0.52 respectively, but a mediocre R-squared value of 0.32. We discover that the fixed acidity, residual sugar, free sulphur dioxide, sulphates, and the alcohol properties tend to increase the wine quality, while the volatile acidity, citric acid, chlorides, total sulphur dioxide, density, and pH properties tend to reduce the wine quality. Future work should be done on selecting significant predictors only.
+
+## Introduction
+Wine is entrenched in many cultures and remains a strong industry worldwide (Eflman, 2017; Culture of wine, 2020). Technological innovations have supported the growth of the wine industry, especially in the realm of certification and quality assessment (Cortez et al., 2009). One prominent innovation is the use of laboratory testing to relate the physicochemical properties of wine to human sensory perceptions (Cortez et al., 2009; Luque et al., 2023). Examples of physicochemical indicators include pH and and residual sugar. Using data to model complex wine perceptions is a daunting task, but it can benefit wine production by flagging the most important properties to consider and informing price setting (Cortez et al., 2009).
+
+Thus, our key question is: Can we use multiple linear regression and various physicochemical indicators to predict the quality of red wine?
+
+To answer whether a full regression model is viable, we use a dataset on red wine quality from the UCI Machine Learning Repository. The dataset comprises of 12 variables (11 physicochemical indicators and 1 quality indicator) and contains 1599 instances of red vinho verde, a popular wine from Portugal. Each instance of wine was assessed by at least three sensory assessors and scored on a ten-point scale that ranges from "very bad" to "excellent"; the wine quality for each instance is determined by the median of these scores (Cortez et al., 2009). The data was collected by the CVRVV, an inter-professional organisation dedicated to the promotion of vinho verde, from May 2004 to February 2007.

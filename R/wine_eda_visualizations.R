@@ -3,11 +3,12 @@
 
 "This script creates the histogram and the correlation matrix used in the EDA section of the analysis.
 
-Usage: scripts/wine_eda_visualizations.R --input=<input> --out_dir=<out_dir>
+Usage: R/wine_eda_visualizations.R --input=<input> --out_dir_hist=<out_dir_hist> --out_dir_corr=<out_dir_corr>
 
 Options:
---input=<input>       Path (including filename) to training data (csv file)
---out_dir=<out_dir>   Path to directory where the visualizations should be written
+--input=<input>                 Path/filename to training data (csv file)
+--out_dir_hist=<out_dir_hist>   Path/filename to directory where histogram plot should be written
+--out_dir_corr=<out_dir_corr>   Path/filename to directory where correlation plot should be written
 " -> doc
 
 library(tidyverse)
@@ -19,7 +20,7 @@ library(docopt)
 
 opt <- docopt(doc)
 
-create_visualizations <- function(input, out_dir) {
+create_visualizations <- function(input, out_dir_hist, out_dir_corr) {
   
   # Read in input file
   wine_train <- read_csv(input)
@@ -154,7 +155,7 @@ create_visualizations <- function(input, out_dir) {
   )
   
   # Save the histograms as png
-  ggsave("results/histogram.png", histogram)
+  ggsave(file.path(out_dir_hist), histogram)
   
   # Creating the correlation matrix
   wine_cors <- cor(wine_train)
@@ -168,18 +169,10 @@ create_visualizations <- function(input, out_dir) {
                             "Alcohol", "Quality")
   
   # Plot correlation matrix, save as png
-  png(height=800, width = 800, file = "results/corrplot.png", type = "cairo")
+  png(height=800, width = 800, file = file.path(out_dir_corr), type = "cairo")
   corr_plot <- corrplot(wine_cors, method = 'number',
                         mar=c(0,0,3,0), number.cex=1.5)
   dev.off()
-  
-  # Save visualizations into RDS files
-  try({
-    dir.create(out_dir)
-  })
-  saveRDS(histogram, file = paste0(out_dir, "/eda_hists.rds"))
-  saveRDS(corr_plot, file = paste0(out_dir, "/corrplot.rds"))
-  
 }
 
-create_visualizations(opt$input, opt$out_dir)
+create_visualizations(opt$input, opt$out_dir_hist, opt$out_dir_corr)

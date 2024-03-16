@@ -5,10 +5,12 @@ format:
     html:
         toc: true
         toc-depth: 3
+        auto-stretch: false
     pdf:
         toc: true
         toc-depth: 3 
         fig-pos: "H"
+        auto-stretch: false
 bibliography: references.bib
 execute:
     echo: false
@@ -18,14 +20,151 @@ editor: source
 
 ```{r}
 library(tidyverse)
+
+lm_accuracy <- read_csv("../results/lm_accuracy.csv")
+rmse_val <- round(lm_accuracy$.estimate[1], 2)
+mae_val <- round(lm_accuracy$.estimate[3], 2)
+r_squared_val <- round(lm_accuracy$.estimate[2], 2)
 ```
 
 ## Summary
-This project analyzes different properties of wine and analyzes which properties affect the quality of wine positively and which properties affect it negatively, in order to predict red wine quality. We applied a multiple linear regression on a public-use dataset to discover how each property affects the quality of wine. Splitting the dataset into a 75/25 training/testing split, and applying a specified recipe for a multivariate regression, we obtained decent RMSE and MAE values of 0.67 and 0.52 respectively, but a mediocre R-squared value of 0.32. We discover that the fixed acidity, residual sugar, free sulphur dioxide, sulphates, and the alcohol properties tend to increase the wine quality, while the volatile acidity, citric acid, chlorides, total sulphur dioxide, density, and pH properties tend to reduce the wine quality. Future work should be done on selecting significant predictors only.
+
+This project analyzes different properties of wine and analyzes which properties affect the quality of wine positively and which properties affect it negatively, in order to predict red wine quality. We applied a multiple linear regression on a public-use dataset to discover how each property affects the quality of wine. Splitting the dataset into a 75/25 training/testing split, and applying a specified recipe for a multivariate regression, we obtained decent RMSPE and MAE values of `{r} rmse_val` and `{r} mae_val` respectively, but a mediocre R-squared value of `{r} r_squared_val`. We discover that the fixed acidity, residual sugar, free sulphur dioxide, sulphates, and the alcohol properties tend to increase the wine quality, while the volatile acidity, citric acid, chlorides, total sulphur dioxide, density, and pH properties tend to reduce the wine quality. Future work should be done on selecting significant predictors only.
 
 ## Introduction
-Wine is entrenched in many cultures and remains a strong industry worldwide (Eflman, 2017; Culture of wine, 2020). Technological innovations have supported the growth of the wine industry, especially in the realm of certification and quality assessment (Cortez et al., 2009). One prominent innovation is the use of laboratory testing to relate the physicochemical properties of wine to human sensory perceptions (Cortez et al., 2009; Luque et al., 2023). Examples of physicochemical indicators include pH and and residual sugar. Using data to model complex wine perceptions is a daunting task, but it can benefit wine production by flagging the most important properties to consider and informing price setting (Cortez et al., 2009).
 
-Thus, our key question is: Can we use multiple linear regression and various physicochemical indicators to predict the quality of red wine?
+Wine is entrenched in many cultures and remains a strong industry worldwide [@Elfman_2019; @Wine_in_Moderation]. Technological innovations have supported the growth of the wine industry, especially in the realm of certification and quality assessment [@CORTEZ2009547]. One prominent innovation is the use of laboratory testing to relate the physicochemical properties of wine to human sensory perceptions [@CORTEZ2009547; @10287348]. Examples of physicochemical indicators include pH and and residual sugar. Using data to model complex wine perceptions is a daunting task, but it can benefit wine production by flagging the most important properties to consider and informing price setting [@CORTEZ2009547].
 
-To answer whether a full regression model is viable, we use a dataset on red wine quality from the UCI Machine Learning Repository. The dataset comprises of 12 variables (11 physicochemical indicators and 1 quality indicator) and contains 1599 instances of red vinho verde, a popular wine from Portugal. Each instance of wine was assessed by at least three sensory assessors and scored on a ten-point scale that ranges from "very bad" to "excellent"; the wine quality for each instance is determined by the median of these scores (Cortez et al., 2009). The data was collected by the CVRVV, an inter-professional organisation dedicated to the promotion of vinho verde, from May 2004 to February 2007.
+Thus, our key question is: *Can we use multiple linear regression and various physicochemical indicators to predict the quality of red wine?*
+
+To answer whether a full regression model is viable, we use a dataset on red wine quality from the [UCI Machine Learning Repository](https://archive.ics.uci.edu/dataset/186/wine+quality). The dataset comprises of 12 variables (11 physicochemical indicators and 1 quality indicator) and contains 1599 instances of red vinho verde, a popular wine from Portugal. Each instance of wine was assessed by at least three sensory assessors and scored on a ten-point scale that ranges from "very bad" to "excellent"; the wine quality for each instance is determined by the median of these scores [@CORTEZ2009547]. The data was collected by the CVRVV, an inter-professional organisation dedicated to the promotion of vinho verde, from May 2004 to February 2007.
+
+## Methods
+
+### Preview of Data
+
+The data was loaded from the UCI Machine Learning Repository. In @tbl-wine-preview, we can see a preview of the first six columns of the dataset.
+
+```{r}
+#| label: tbl-wine-preview
+#| tbl-cap: Loaded dataset of wine quality.
+
+wine_raw <- read_csv("../data/wine_raw.csv")
+knitr::kable(head(wine_raw))
+```
+
+### Exploratory Data Analysis
+
+```{r}
+wine_training <- read_csv("../results/wine_training.csv")
+wine_testing <- read_csv("../results/wine_testing.csv")
+training_obs <- nrow(wine_training)
+testing_obs <- nrow(wine_testing)
+na_vals <- sum(is.na(wine_raw))
+```
+
+The data was split into a training set (75% of the dataset) and a testing set (the remaining 25%). Thus, the training set had `{r} training_obs` obervations and the testing set had `{r} testing_obs` observations. The training set was used to train our model. The testing set was used to validate the results of the created model.
+
+There were also `{r} na_vals` missing values.
+
+The means of the independent variables for every level of the response variable "quality" were explored in @tbl-wine-means.
+
+```{r}
+#| label: tbl-wine-means
+#| tbl-cap: Means for each level of the response variable "quality".
+
+response_means <- read_csv("../results/response_means.csv")
+knitr::kable(response_means)
+```
+
+### Exploratory Data Analysis Visualization
+
+Before we began on the analysis, we wanted to visualize our dataset to get a general understanding of our data and check for valid assumptions and potential issues we have to alleviate later on.
+
+One of the assumptions of MLR is normality. Without normality, it could affect the coefficient estimates obtained and standard errors would be inflated. We checked the distribution of each input variable through a histogram in @fig-histogram.
+
+![Histogram of the input variables, color-coded by their respective quality. In the last plot, histogram of each wine quality.](../results/wine-histogram.png){#fig-histogram width="80%"}
+
+Each of the qualities we analyzed are plotted together in @fig-histogram to get an understanding of several assumptions we are making. For some of them, (such as density, pH, volatile_acidity, etc), a normality assumption is reasonable. For others, (such as citric_acid, total_sulfur_dioxide, etc) it may be a bit harder to assume normality. Each of the different qualities are also coloured in, so the different densities among the quality levels can be visualized.
+
+The very last plot is a visual for the count of how many wines are in each quality level. Unfortunately, there does not appear to be a consistent count for each quality level, rather most of the wines in the dataset have qualities between 5 and 7. This could affect the performance of the model.
+
+Next, we looked at how correlated the variables in the dataset are against each other in @fig-corr.
+
+![Correlation matrix of all variables.](../results/wine-correlation.png){#fig-corr width="80%"}
+
+@fig-corr suggests that the values all tend to be more independent of each other than some others. For quality, the values that are the most correlated appear to be volatile acidity and the alcohol content. This suggests that those may be the best predictors, and the others may be a bit weaker.
+
+### Multiple Linear Rgression
+
+We specified a linear regression model and then a recipe. In the recipe, we stated "quality" as our response variable, and the other 11 variables as input variables. We then set up the workflow and trained the model using our training set.
+
+In @tbl-coeffs, we can see the obtained coefficients from the model:
+
+```{r}
+#| label: tbl-coeffs
+#| tbl-cap: Summary of the coefficients from the linear regression with their respective standard error, statistic, and p-value.
+
+wine_coeffs <- read_csv("../results/wine_lm_coefs.csv")
+intercept <- round(wine_coeffs$estimate[1], 2)
+fixacid_val <- round(wine_coeffs$estimate[2], 2)
+volacid_val <- round(wine_coeffs$estimate[3], 2)
+citricacid_val <- round(wine_coeffs$estimate[4], 2)
+residualsugar_val <- round(wine_coeffs$estimate[5], 2)
+chlorides_val <- round(wine_coeffs$estimate[6], 2)
+freeso2_val <- round(wine_coeffs$estimate[7], 2)
+totalso2_val <- round(wine_coeffs$estimate[8], 2)
+density_val <- round(wine_coeffs$estimate[9], 2)
+ph_val <- round(wine_coeffs$estimate[10], 2)
+sulphates_val <- round(wine_coeffs$estimate[11], 2)
+alcohol_val <- round(wine_coeffs$estimate[12], 2)
+knitr::kable(wine_coeffs)
+```
+
+From @tbl-coeffs, we can see that most of our input variables are statistically significant, as their p-values are \< 0.05. However, a couple have p-values that are \> 0.05, and thus, are not statistically significant.
+
+-   Significant: fixed acidity, sulphates, alcohol, volatile acidity, chlorides, total sulfur dioxide, and density.
+-   Non-significant: residual sugar, citric acid, free sulfur dioxide, and pH.
+
+The full equation of our linear regression model is (rounded to the nearest 3 decimals):
+
+quality = `{r} intercept` + `{r} fixacid_val` x fixed_acidity `{r} volacid_val` x volatile_acidity `{r} citricacid_val` x citric_acid + `{r} residualsugar_val` x residual_sugar `{r} chlorides_val` x chlorides + `{r} freeso2_val` x free_sulfur_dioxide `{r} totalso2_val` x total_sulfur_dioxide `{r} density_val` x density `{r} ph_val` x pH `{r} sulphates_val` x sulphates + `{r} alcohol_val` x alcohol
+
+We can also determine the correlation between the input variables and the response variable quality:
+
+-   Positively correlated: fixed acidity, residual sugar, free sulfur dioxide, sulphates, and alcohol.
+-   Negatively correlated: volatile acidity, citric acid, chlorides, total sulfur dioxide, density, and pH.
+
+The model was tested on the testing set. The metrics from the model are in @tbl-lm-accuracy.
+
+```{r}
+#| label: tbl-lm-accuracy
+#| tbl-cap: Estimates of the model's performance on the testing set.
+
+knitr::kable(lm_accuracy)
+```
+
+Our RMSPE is `{r} rmse_val` units of quality, which we deem to be a low value. Our mean absolute error is `{r} mae_val` units of quality, which we also deem to be a low value. Thus, we believe our model performs relatively well. However, our R^2 is `{r} r_squared_val` which is a low number, indicating that our model does not fit the data as well as hoped.
+
+To assess the validity of our model, we plotted a QQ plot where the theoretical quantiles are plotted against the sample quantiles. This plot shows the normality distribution. A QQ-plot with a straight line would be the ideal one. Our resulting QQ-plot is in @fig-qq.
+
+![Correlation matrix of all variables.](../results/wine_lm_qq_plot.png){#fig-qq width="80%"}
+
+As seen, @fig-qq appears to follow a straight line. There does appear to be a dip from the line near quantiles = 0, and a few outliers (173 and 113), but overall, the normality assumption on our data is reasonable.
+
+## Discussion
+### Summary and Expectations
+The purpose of this project was to determine if it was possible to predict red wine quality through a set of 11 physicochemical variables. We applied a multiple linear regression on a public-use dataset to discover how each property affects the quality of wine. Splitting the dataset into a 75/25 training/testing split, and applying a specified recipe for a multivariate regression, we obtained decent RMSPE and MAE values of `{r} rmse_val` and `{r} mae_val` respectively, but a mediocre R-squared value of `{r} r_squared_val`.
+
+We discover that the fixed acidity, residual sugar, free sulphur dioxide, sulphates, and the alcohol properties tend to increase the wine quality, while the volatile acidity, citric acid, chlorides, total sulphur dioxide, density, and pH properties tend to reduce the wine quality. Furthermore, only fixed acidity, sulphates, alcohol, volatile acidity, chlorides, total sulfur dioxide, and density were deemed to be significant predictors.
+
+From @fig-corr, it was expected that alcohol and volatile acidity would be significant predictors for quality. And in fact, these variables were statistically significant as their p values was < 0.05. However, the model's fit performed worse than expected, with a very low R-squared value.
+
+### Impacts and Future Questions
+The multivariate regression analysis conducted on the wine quality dataset aimed to uncover the impacts of various factors such as the alcohol content, the acidity, and the amount of sugar on the overall quality of wine. While the accuracy of our model is a bit mediocre at best, it is still a valuable analysis that can uncover proposals of changing winemaking practices and consumer preferences.
+
+Future research should attempt to improve the accuracy of our model, such as incorporating better model selection techniques such as stepwise regression, or to restrict the coefficients through LASSO or Ridge regression. Alternate strategies could be to adapt a non-parametric (i.e. classification) analysis rather than a regression analysis on the data. More data could also be collected to further the amount of predictors and the amount of data there are.
+
+For those who are in the winemaking business, this should propose implications on alternate winemaking techniques to better increase the quality of the wine that is being manufactured, and may ask why some qualities negatively affect the quality of the wine and why others positively affect the quality.
+
+## References

@@ -1,9 +1,12 @@
 FROM rocker/tidyverse:4.3.2
 
-RUN install2.r --error --skipmissing --deps TRUE --skipinstalled \
+RUN apt-get update -qq && apt-get -y --no-install-recommends install \
+    && install2.r --error --skipmissing --deps TRUE --skipinstalled \
     tidyverse \
     car \
     corrplot \
     cowplot \
     tidymodels \
+    knitr \
+    kableExtra \
     docopt

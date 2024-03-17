@@ -18,7 +18,7 @@ To set up the repository and reproduce the analysis, please follow these steps:
    git clone https://github.com/DSCI-310-2024/dsci-310_group-7_wine-quality-prediction.git
    ```
 2. Navigate to the root of the repository through the ```cd``` command on your terminal.
-3. Paste the following code onto your terminal:
+3. Download [Docker](https://docs.docker.com/desktop/install/mac-install/) and ensure it is running. Paste the following code onto your terminal:
    ```
    docker-compose up
    ```

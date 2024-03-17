@@ -8,10 +8,41 @@ This project attempts to build a multiple linear regression model to analyze dif
 The data used for this project is [from the UCI Machine Learning Repository, created by Cortez et al. (2009)](https://doi.org/10.24432/C56S3T). The dataset comprises of 12 variables (11 physicochemical indicators and 1 quality indicator) and contains 1599 instances of red vinho verde, a popular wine from Portugal. Each instance of wine was assessed by at least three [sensory assessors](https://www.sensorysociety.org/knowledge/sspwiki/Pages/assessor.aspx) and scored on a ten-point scale that ranges from "very bad" to "excellent"; the wine quality for each instance is determined by the median of these scores. 
 
 ## Report
-The final report can be found [here](https://github.com/DSCI-310-2024/dsci-310_group-7_wine-quality-prediction/blob/main/prediction-red_wine_quality.ipynb).
+The final reports can be found [here](https://github.com/DSCI-310-2024/dsci-310_group-7_wine-quality-prediction/tree/main/reports).
 
 ## Usage
+### Using Docker:
 To set up the repository and reproduce the analysis, please follow these steps:
+1.  Clone the repository. Paste this code onto your terminal:
+   ```
+   git clone https://github.com/DSCI-310-2024/dsci-310_group-7_wine-quality-prediction.git
+   ```
+2. Navigate to the root of the repository through the ```cd``` command on your terminal.
+3. Paste the following code onto your terminal:
+   ```
+   docker-compose up
+   ```
+4. Open your browser and go to [http://localhost:8787/](http://localhost:8787/).
+5. Type in "rstudio" as the username and "group7wine" as the password.
+6. Make sure the RStudio's terminal and R console are both at the root of the repository.
+7. You might need to activate the renv environment by pasting the following code on the R console:
+    ```
+   renv::restore()
+   ```
+   Followed by:
+   ```
+   renv::activate()
+   ```
+8. On the terminal, paste the following in order to remove the created files and reports:
+   ```
+   make clean
+   ```
+9. On the terminal, paste the following in order to re-create the files and reports:
+   ```
+   make all
+   ```
+
+### Without using Docker:
 1. Install R from the [CRAN project](https://cran.r-project.org/). The version used for this repository was version 4.3.2.
 2. Install Jupyter Lab. You can do this through [Miniconda](https://docs.anaconda.com/free/miniconda/) and this code:
    ```
@@ -38,14 +69,24 @@ To set up the repository and reproduce the analysis, please follow these steps:
    ```
    jupyter lab
    ```
-8. Open prediction-red_wine_quality.ipynb on Jupyter Lab.
+8. On the terminal, paste the following in order to remove the created files and reports:
+   ```
+   make clean
+   ```
+9. On the terminal, paste the following in order to re-create the files and reports:
+   ```
+   make all
+   ```
+10. Alternatively, you can open reports/prediction-red_wine_quality.ipynb on Jupyter Lab.
 
-## Troubleshooting
-If the setup does not work, please try one of the following solutions:
+## Troubleshooting the setup WITHOUT using Docker
+If the setup without using Docker does not work, please try one of the following solutions:
 
 1. Open the notebook on Jupyter Lab. Open an R console on JupyterLab. Do step 6.
 
 2. Install IRkernel through ```install.packages('IRkernel')``` on an R console. The version used in this repository is 1.3.2. Then, open the notebook on Jupyter Lab. Open an R console and do step 6.
+
+3. Try the Docker setup.
 
 ## Dependencies
 - [Docker](https://www.docker.com/) is used to virtualise the software dependencies for this project. The Docker image for this project is built from the `rocker/tidyverse:4.3.2` image. Additional dependencies are detailed in the [`Dockerfile`](Dockerfile).

@@ -50,8 +50,13 @@ The data was loaded from the UCI Machine Learning Repository. In @tbl-wine-previ
 #| tbl-cap: Loaded dataset of wine quality.
 
 wine_raw <- read_csv("../data/wine_raw.csv")
-knitr::kable(head(wine_raw))
+knitr::kable(head(wine_raw), digits=3, format="html",
+             col.names=c("FA", "VA", "CA", "RS", 
+                              "C", "F-SO2", "T-SO2", "D", 
+                              "pH", "SO2-4", "ALC", "Quality"))
 ```
+
+Where FA is Fixed Acidity, VA is Volatile Acidity, CA is Citric Acid, RS is Residual Sugar, C is Chlorides, F-SO2 is Free Sulfur Dioxide, T-SO2 is Total Sulfur Dioxide, D is Density, pH is the potential of Hydrogen, SO2-4 is sulphates, and ALC is the alcohol content.
 
 ### Exploratory Data Analysis
 
@@ -74,8 +79,13 @@ The means of the independent variables for every level of the response variable 
 #| tbl-cap: Means for each level of the response variable "quality".
 
 response_means <- read_csv("../results/response_means.csv")
-knitr::kable(response_means)
+knitr::kable(response_means, digits=3, format="html",
+             col.names=c("Quality", "FA", "VA", "CA",  
+                         "RS", "C", "F-SO2", "T-SO2",  
+                         "D", "pH", "SO2-4", "ALC"))
 ```
+
+Where the columns are defined the same as in @tbl-wine-preview.
 
 ### Exploratory Data Analysis Visualization
 

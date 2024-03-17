@@ -83,7 +83,7 @@ Before we began on the analysis, we wanted to visualize our dataset to get a gen
 
 One of the assumptions of MLR is normality. Without normality, it could affect the coefficient estimates obtained and standard errors would be inflated. We checked the distribution of each input variable through a histogram in @fig-histogram.
 
-![Histogram of the input variables, color-coded by their respective quality. In the last plot, histogram of each wine quality.](../results/wine-histogram.png){#fig-histogram width="80%"}
+![Histogram of the input variables, color-coded by their respective quality. In the last plot, histogram of each wine quality.](../results/wine-histogram.png){#fig-histogram width="60%"}
 
 Each of the qualities we analyzed are plotted together in @fig-histogram to get an understanding of several assumptions we are making. For some of them, (such as density, pH, volatile_acidity, etc), a normality assumption is reasonable. For others, (such as citric_acid, total_sulfur_dioxide, etc) it may be a bit harder to assume normality. Each of the different qualities are also coloured in, so the different densities among the quality levels can be visualized.
 
@@ -91,7 +91,7 @@ The very last plot is a visual for the count of how many wines are in each quali
 
 Next, we looked at how correlated the variables in the dataset are against each other in @fig-corr.
 
-![Correlation matrix of all variables.](../results/wine-correlation.png){#fig-corr width="80%"}
+![Correlation matrix of all variables.](../results/wine-correlation.png){#fig-corr width="60%"}
 
 @fig-corr suggests that the values all tend to be more independent of each other than some others. For quality, the values that are the most correlated appear to be volatile acidity and the alcohol content. This suggests that those may be the best predictors, and the others may be a bit weaker.
 
@@ -148,7 +148,7 @@ Our RMSPE is `{r} rmse_val` units of quality, which we deem to be a low value. O
 
 To assess the validity of our model, we plotted a QQ plot where the theoretical quantiles are plotted against the sample quantiles. This plot shows the normality distribution. A QQ-plot with a straight line would be the ideal one. Our resulting QQ-plot is in @fig-qq.
 
-![Correlation matrix of all variables.](../results/wine_lm_qq_plot.png){#fig-qq width="80%"}
+![Correlation matrix of all variables.](../results/wine_lm_qq_plot.png){#fig-qq width="50%"}
 
 As seen, @fig-qq appears to follow a straight line. There does appear to be a dip from the line near quantiles = 0, and a few outliers (173 and 113), but overall, the normality assumption on our data is reasonable.
 

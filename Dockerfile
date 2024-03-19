@@ -9,4 +9,5 @@ RUN apt-get update -qq && apt-get -y --no-install-recommends install \
     tidymodels \
     knitr \
     kableExtra \
+    tinytex \
     docopt

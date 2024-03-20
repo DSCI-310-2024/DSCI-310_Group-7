@@ -11,4 +11,4 @@ RUN apt-get update -qq && apt-get -y --no-install-recommends install \
     kableExtra \
     docopt
 
-RUN Rscript -e 'tinytex::install_tinytex()'
+RUN quarto install tinytex

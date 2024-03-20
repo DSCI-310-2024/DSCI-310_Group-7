@@ -11,4 +11,6 @@ RUN apt-get update -qq && apt-get -y --no-install-recommends install \
     kableExtra \
     docopt
 
-RUN quarto install tinytex
+RUN apt-get wget
+
+RUN wget -qO- "https://yihui.org/tinytex/install-bin-unix.sh" | sh

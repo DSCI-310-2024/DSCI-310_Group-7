@@ -13,4 +13,4 @@ RUN apt-get update -qq && apt-get -y --no-install-recommends install \
     testthat \
     docopt
 
-RUN quarto install tinytex
+RUN Rscript -e 'tinytex::install_tinytex()'

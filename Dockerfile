@@ -9,8 +9,8 @@ RUN apt-get update -qq && apt-get -y --no-install-recommends install \
     tidymodels \
     knitr \
     kableExtra \
+    rmarkdown \
+    testthat \
     docopt
 
-RUN apt-get wget
-
-RUN wget -qO- "https://yihui.org/tinytex/install-bin-unix.sh" | sh
+RUN quarto install tinytex

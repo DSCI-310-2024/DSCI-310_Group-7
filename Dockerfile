@@ -9,5 +9,6 @@ RUN apt-get update -qq && apt-get -y --no-install-recommends install \
     tidymodels \
     knitr \
     kableExtra \
-    tinytex \
     docopt
+
+RUN Rscript -e 'tinytex::install_tinytex()'

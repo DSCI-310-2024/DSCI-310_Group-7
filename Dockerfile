@@ -10,6 +10,7 @@ RUN apt-get update -qq && apt-get -y --no-install-recommends install \
         knitr \
         kableExtra \
         testthat \
+        vdiffr \
         docopt
 
 USER rstudio

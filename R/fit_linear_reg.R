@@ -14,5 +14,17 @@
 #' @examples
 #' fit_linear_reg(quality ~ ., training)
 fit_linear_reg <- function(formula, data_frame) {
-  # returns a fitted linear regression model (RDS)
+  # Specify linear regression 
+  lm_spec <- parsnip::linear_reg() %>%
+    parsnip::set_engine("lm") %>%
+    parsnip::set_mode("regression")
+  
+  # Set up the recipe
+  wine_lm_recipe <- recipes::recipe(formula, data = data_frame)
+  
+  # Training the model.
+  wine_lm_fit <- workflows::workflow() %>%
+    workflows::add_recipe(wine_lm_recipe) %>%
+    workflows::add_model(lm_spec) %>%
+    parsnip::fit(data = data_frame)
 }

@@ -36,5 +36,5 @@ load_w_new_col <- function(dataset_path, col_names, delimiter) {
   }
   
   colnames(loaded_dataset) <- col_names
-  print(loaded_dataset)
+  loaded_dataset
 }

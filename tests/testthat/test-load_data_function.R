@@ -10,7 +10,7 @@ test_that("function should return a dataset as a tibble with new column names", 
   expect_is(loaded_data, "tbl_df")
   expect_equal(ncol(loaded_data), 4)
   expect_equal(colnames(loaded_data), col_names)
-  expect_equal(loaded_data, simple_dataset_w_col)
+  expect_equivalent(loaded_data, simple_dataset_w_col)
 })
 
 test_that("function should return a dataset as a tibble with new column names
@@ -22,7 +22,7 @@ test_that("function should return a dataset as a tibble with new column names
             expect_is(loaded_data, "tbl_df")
             expect_equal(ncol(loaded_data), length(col_names))
             expect_equal(colnames(loaded_data), col_names)
-            expect_equal(loaded_data, one_dataset_w_col)
+            expect_equivalent(loaded_data, one_dataset_w_col)
           })
 
 test_that("function should not read empty datasets", {

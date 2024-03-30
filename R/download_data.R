@@ -13,16 +13,16 @@ from the UCI Machine Learning Repository
 
 library(tidyverse)
 library(docopt)
+source("R/load_data_function.R")
 
 opt <- docopt(doc)
 
 main <- function(input, out_dir) {
-  wine_raw <- read_delim(toString(input), delim = ";")
   new_names <- c("fixed_acidity", "volatile_acidity", "citric_acid",
                  "residual_sugar", "chlorides", "free_sulfur_dioxide",
                  "total_sulfur_dioxide", "density", "pH", "sulphates",
                  "alcohol", "quality")
-  colnames(wine_raw) <- new_names
+  wine_raw <- load_w_new_col(input, new_names, ";")
   write_csv(wine_raw, file.path(out_dir))
 }
 

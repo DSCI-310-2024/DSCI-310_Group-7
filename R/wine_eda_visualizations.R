@@ -17,6 +17,7 @@ library(cowplot)
 library(car)
 library(corrplot)
 library(docopt)
+source("R/create_histogram.R")
 
 opt <- docopt(doc)
 
@@ -35,90 +36,73 @@ create_visualizations <- function(input, out_dir_hist, out_dir_corr) {
   options(repr.plot.width = 60, repr.plot.height = 40)
   
   # Plotting a histogram of every input variable.
-  fixed_acidity_hist <- wine_train_categorical %>%
-    ggplot(aes(x = fixed_acidity)) +
-    geom_histogram(aes(color = quality, fill = quality)) + 
-    xlab("Fixed acidity")+
-    theme(text = element_text(size=font_size),
-          legend.position="none")
+  fixed_acidity_hist <- create_histogram(df = wine_train_categorical,
+                                         x = fixed_acidity,
+                                         group = quality,
+                                         x_lab = "Fixed acidity",
+                                         y_lab = "Group",
+                                         font_size = font_size)
   
-  volatile_acidity_hist <- wine_train_categorical %>%
-    ggplot(aes(x = volatile_acidity)) +
-    geom_histogram(aes(color = quality, fill = quality)) + 
-    xlab("Volatile acidity")+
-    theme(text = element_text(size=font_size),
-          legend.position="none",
-          axis.title.y = element_blank())
+  volatile_acidity_hist <- create_histogram(df = wine_train_categorical,
+                                            x = volatile_acidity,
+                                            group = quality,
+                                            x_lab = "Volatile acidity",
+                                            font_size = font_size)
   
-  citric_acid_hist <- wine_train_categorical %>%
-    ggplot(aes(x = citric_acid)) +
-    geom_histogram(aes(color = quality, fill = quality)) + 
-    xlab("Citric acid")+
-    theme(text = element_text(size=font_size),
-          legend.position="none",
-          axis.title.y = element_blank())
+  citric_acid_hist <- create_histogram(df = wine_train_categorical,
+                                       x = citric_acid,
+                                       group = quality,
+                                       x_lab = "Citric acid",
+                                       font_size = font_size)
   
-  residual_sugar_hist <- wine_train_categorical %>%
-    ggplot(aes(x = residual_sugar)) +
-    geom_histogram(aes(color = quality, fill = quality)) + 
-    xlab("Residual sugar")+
-    theme(text = element_text(size=font_size),
-          legend.position="none",
-          axis.title.y = element_blank())
+  residual_sugar_hist <- create_histogram(df = wine_train_categorical,
+                                          x = residual_sugar,
+                                          group = quality,
+                                          x_lab = "Residual Sugar",
+                                          font_size = font_size)
   
-  chlorides_hist <- wine_train_categorical %>%
-    ggplot(aes(x = chlorides)) +
-    geom_histogram(aes(color = quality, fill = quality)) + 
-    xlab("Chlorides")+
-    theme(text = element_text(size=font_size),
-          legend.position="none")
+  chlorides_hist <- create_histogram(df = wine_train_categorical,
+                                     x = chlorides,
+                                     group = quality,
+                                     x_lab = "Chlorides",
+                                     font_size = font_size)
   
-  free_sulfur_dioxide_hist <- wine_train_categorical %>%
-    ggplot(aes(x = free_sulfur_dioxide)) +
-    geom_histogram(aes(color = quality, fill = quality)) + 
-    xlab("Free sulfur dioxide")+
-    theme(text = element_text(size=font_size),
-          legend.position="none",
-          axis.title.y = element_blank())
+  free_sulfur_dioxide_hist <- create_histogram(df = wine_train_categorical,
+                                               x = free_sulfur_dioxide,
+                                               group = quality,
+                                               x_lab = "Free sulfur dioxide",
+                                               font_size = font_size)
   
-  total_sulfur_dioxide_hist <- wine_train_categorical %>%
-    ggplot(aes(x = total_sulfur_dioxide)) +
-    geom_histogram(aes(color = quality, fill = quality)) + 
-    xlab("Total sulfur dioxide")+
-    theme(text = element_text(size=font_size),
-          legend.position="none",
-          axis.title.y = element_blank())
+  total_sulfur_dioxide_hist <- create_histogram(df = wine_train_categorical,
+                                                x = total_sulfur_dioxide,
+                                                group = quality,
+                                                x_lab = "Total sulfur dioxide",
+                                                font_size = font_size)
   
-  density_hist <- wine_train_categorical %>%
-    ggplot(aes(x = density)) +
-    geom_histogram(aes(color = quality, fill = quality)) + 
-    xlab("Density")+
-    theme(text = element_text(size=font_size),
-          legend.position="none",
-          axis.title.y = element_blank())
   
-  pH_hist <- wine_train_categorical %>%
-    ggplot(aes(x = pH)) +
-    geom_histogram(aes(color = quality, fill = quality)) + 
-    xlab("pH")+
-    theme(text = element_text(size=font_size),
-          legend.position="none")
+  density_hist <- create_histogram(df = wine_train_categorical,
+                                   x = density,
+                                   group = quality,
+                                   x_lab = "Density",
+                                   font_size = font_size)
   
-  sulphates_hist <- wine_train_categorical %>%
-    ggplot(aes(x = sulphates)) +
-    geom_histogram(aes(color = quality, fill = quality)) + 
-    xlab("Sulphates")+
-    theme(text = element_text(size=font_size),
-          legend.position="none",
-          axis.title.y = element_blank())
+  pH_hist <- create_histogram(df = wine_train_categorical,
+                              x = pH,
+                              group = quality,
+                              x_lab = "pH",
+                              font_size = font_size)
   
-  alcohol_hist <- wine_train_categorical %>%
-    ggplot(aes(x = alcohol)) +
-    geom_histogram(aes(color = quality, fill = quality)) + 
-    xlab("Alcohol")+
-    theme(text = element_text(size=font_size),
-          legend.position="none",
-          axis.title.y = element_blank())
+  sulphates_hist <- create_histogram(df = wine_train_categorical,
+                                     x = sulphates,
+                                     group = quality,
+                                     x_lab = "Sulphates",
+                                     font_size = font_size)
+  
+  alcohol_hist <- create_histogram(df = wine_train_categorical,
+                                   x = alcohol,
+                                   group = quality,
+                                   x_lab = "Alcohol",
+                                   font_size = font_size)
   
   # Plotting a histogram plot of the response variable, quality.
   quality_hist <- wine_train %>%
@@ -134,13 +118,6 @@ create_visualizations <- function(input, out_dir_hist, out_dir_corr) {
                      chlorides_hist, free_sulfur_dioxide_hist, total_sulfur_dioxide_hist, density_hist, 
                      pH_hist, sulphates_hist, alcohol_hist, quality_hist + theme(legend.position="none"),
                      ncol=4, nrow =3)
-  
-  # Adding a title.
-  # title_hist <- ggdraw() +
-  #   draw_label(
-  #     "Figure 2. Histogram of the input variables, color-coded by their respective quality. In the last plot, histogram of each wine quality.",
-  #     fontface = 'bold', x = 0, hjust = 0, size = font_size + 8) +
-  #   theme(plot.margin = margin(0, 0, 0, 7)) # alignment
   
   # Adding a common legend.
   legend_hist <- get_legend(quality_hist + theme(legend.box.margin = margin(0, 0, 0, 3),

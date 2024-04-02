@@ -37,7 +37,7 @@ Wine is entrenched in many cultures and remains a strong industry worldwide [@El
 
 Thus, our key question is: *Can we use multiple linear regression and various physicochemical indicators to predict the quality of red wine?*
 
-To answer whether a full regression model is viable, we use a dataset on red wine quality from the [UCI Machine Learning Repository](https://archive.ics.uci.edu/dataset/186/wine+quality). The dataset comprises of 12 variables (11 physicochemical indicators and 1 quality indicator) and contains 1599 instances of red vinho verde, a popular wine from Portugal. Each instance of wine was assessed by at least three sensory assessors and scored on a ten-point scale that ranges from "very bad" to "excellent"; the wine quality for each instance is determined by the median of these scores [@CORTEZ2009547]. The data was collected by the CVRVV, an inter-professional organisation dedicated to the promotion of vinho verde, from May 2004 to February 2007.
+To answer whether a full regression model is viable, we use a dataset on red wine quality from the [UCI Machine Learning Repository](https://archive.ics.uci.edu/dataset/186/wine+quality) [@misc_wine_quality_186]. The dataset comprises of 12 variables (11 physicochemical indicators and 1 quality indicator) and contains 1599 instances of red vinho verde, a popular wine from Portugal. Each instance of wine was assessed by at least three sensory assessors and scored on a ten-point scale that ranges from "very bad" to "excellent"; the wine quality for each instance is determined by the median of these scores [@CORTEZ2009547]. The data was collected by the CVRVV, an inter-professional organisation dedicated to the promotion of vinho verde, from May 2004 to February 2007.
 
 ## Methods
 

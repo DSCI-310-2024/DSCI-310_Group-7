@@ -27,11 +27,15 @@ To set up the repository and reproduce the analysis, please follow these steps:
    ```
    cd workspace
    ```
-8. On the terminal, paste the following in order to remove the created files and reports:
+7. To test all the unique R functions in this analysis, paste the folliwing into the R console:
+   ```
+   testthat::test_dir("tests/testthat")
+   ```
+9. On the terminal, paste the following in order to remove the created files and reports:
    ```
    make clean
    ```
-9. On the terminal, paste the following in order to re-create the files and reports:
+10. On the terminal, paste the following in order to re-create the files and reports:
    ```
    make all
    ```

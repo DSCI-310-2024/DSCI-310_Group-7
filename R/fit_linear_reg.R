@@ -27,4 +27,6 @@ fit_linear_reg <- function(formula, data_frame) {
     workflows::add_recipe(wine_lm_recipe) %>%
     workflows::add_model(lm_spec) %>%
     parsnip::fit(data = data_frame)
+  
+  return(wine_lm_fit)
 }

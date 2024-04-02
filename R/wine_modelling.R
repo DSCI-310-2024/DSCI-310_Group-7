@@ -18,6 +18,8 @@ library(car)
 library(corrplot)
 library(docopt)
 
+source("R/fit_linear_reg.R")
+
 opt <- docopt(doc)
 
 create_model <- function(input, out_dir_lm, out_dir_coef) {
@@ -26,18 +28,20 @@ create_model <- function(input, out_dir_lm, out_dir_coef) {
   training <- read_csv(input)
   
   # Specify model
-  lm_spec <- linear_reg() %>%
-    set_engine("lm") %>%
-    set_mode("regression")
+  wine_lm_fit <- fit_linear_reg(quality ~ ., data = training)
   
-  # Setting up the recipe.
-  wine_lm_recipe <- recipe(quality ~ ., data = training)
-  
-  # Training the model.
-  wine_lm_fit <- workflow() %>%
-    add_recipe(wine_lm_recipe) %>%
-    add_model(lm_spec) %>%
-    fit(data = training)
+  # lm_spec <- linear_reg() %>%
+  #   set_engine("lm") %>%
+  #   set_mode("regression")
+  # 
+  # # Setting up the recipe.
+  # wine_lm_recipe <- recipe(quality ~ ., data = training)
+  # 
+  # # Training the model.
+  # wine_lm_fit <- workflow() %>%
+  #   add_recipe(wine_lm_recipe) %>%
+  #   add_model(lm_spec) %>%
+  #   fit(data = training)
   
   # Pulling information of the coefficients in a tibble.
   wine_coeffs <- wine_lm_fit %>%

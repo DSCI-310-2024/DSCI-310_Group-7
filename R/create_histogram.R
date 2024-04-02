@@ -32,15 +32,15 @@ create_histogram <- function(df,
                              font_size = 10.5) {
   
   histogram <- df %>%
-    ggplot2::ggplot(aes(x = {{x}})) +
-    ggplot2::geom_histogram(aes(color = {{group}}, fill = {{group}})) + 
+    ggplot2::ggplot(ggplot2::aes(x = {{x}})) +
+    ggplot2::geom_histogram(ggplot2::aes(color = {{group}}, fill = {{group}})) + 
     ggplot2::xlab(x_lab) +
     ggplot2::ylab(y_lab) +
-    theme(text = element_text(size=font_size),
+    ggplot2::theme(text = ggplot2::element_text(size=font_size),
           legend.position="none")
   
   if(y_lab == "") {
-    histogram <- histogram + theme(axis.title.y = element_blank())
+    histogram <- histogram + ggplot2::theme(axis.title.y = element_blank())
   }
   
   return(histogram)

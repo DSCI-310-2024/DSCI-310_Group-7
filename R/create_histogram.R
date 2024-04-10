@@ -31,9 +31,13 @@ create_histogram <- function(df,
                              y_lab = "", 
                              font_size = 10.5) {
   
+  if(!is.data.frame(df)) {
+    stop("`df` is not a data frame object")
+  }
+  
   histogram <- df %>%
     ggplot2::ggplot(ggplot2::aes(x = {{x}})) +
-    ggplot2::geom_histogram(ggplot2::aes(color = {{group}}, fill = {{group}})) + 
+    ggplot2::geom_histogram(ggplot2::aes(color = {{group}}, fill = {{group}}), bins = 30) + 
     ggplot2::xlab(x_lab) +
     ggplot2::ylab(y_lab) +
     ggplot2::theme(text = ggplot2::element_text(size=font_size),

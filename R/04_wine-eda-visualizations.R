@@ -40,7 +40,7 @@ main <- function(input, out_dir_hist, out_dir_corr) {
                                          x = fixed_acidity,
                                          group = quality,
                                          x_lab = "Fixed acidity",
-                                         y_lab = "Group",
+                                         y_lab = "Count",
                                          font_size = font_size)
   
   volatile_acidity_hist <- create_histogram(df = wine_train_categorical,
@@ -65,6 +65,7 @@ main <- function(input, out_dir_hist, out_dir_corr) {
                                      x = chlorides,
                                      group = quality,
                                      x_lab = "Chlorides",
+                                     y_lab = "Count",
                                      font_size = font_size)
   
   free_sulfur_dioxide_hist <- create_histogram(df = wine_train_categorical,
@@ -90,6 +91,7 @@ main <- function(input, out_dir_hist, out_dir_corr) {
                               x = pH,
                               group = quality,
                               x_lab = "pH",
+                              y_lab = "Count",
                               font_size = font_size)
   
   sulphates_hist <- create_histogram(df = wine_train_categorical,

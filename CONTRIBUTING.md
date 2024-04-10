@@ -23,12 +23,6 @@ Furthermore, note:
 * We use testthat. Contributions with test cases included are easier to accept.
 * New code should follow the tidyverse style guide. 
 
-## Fixing typos
-Small typos or grammatical errors in documentation may be edited directly using the GitHub web interface, so long as the changes are made in the _source_ file.
-
-*  YES: you edit a roxygen comment in a `.R` file below `R/`.
-*  NO: you edit an `.Rd` file below `man/`.
-
 ## Code of Conduct
 Please note that this project follows a [Code of Conduct](https://github.com/DSCI-310-2024/DSCI-310_Group-7/blob/4d803ebe7bc72506d42578df986d87f705cc38df/CODE_OF_CONDUCT.md). You must abide by these terms to contribute to the project.
 

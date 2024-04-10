@@ -20,7 +20,7 @@ library(docopt)
 
 opt <- docopt(doc)
 
-test_model <- function(input, model, out_dir_acc, out_dir_qq) {
+main <- function(input, model, out_dir_acc, out_dir_qq) {
   
   # Read in testing data
   wine_test <- read_csv(input)
@@ -49,4 +49,4 @@ test_model <- function(input, model, out_dir_acc, out_dir_qq) {
   dev.off()
 }
 
-test_model(opt$input, opt$model, opt$out_dir_acc, opt$out_dir_qq)
+main(opt$input, opt$model, opt$out_dir_acc, opt$out_dir_qq)

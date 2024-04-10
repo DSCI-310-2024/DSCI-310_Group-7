@@ -22,8 +22,8 @@ main <- function(input, out_dir) {
                  "residual_sugar", "chlorides", "free_sulfur_dioxide",
                  "total_sulfur_dioxide", "density", "pH", "sulphates",
                  "alcohol", "quality")
-  wine_raw <- load_w_new_col(input, new_names, ";")
-  write_csv(wine_raw, file.path(out_dir))
+  wine_processed <- load_w_new_col(input, new_names, ";")
+  write_csv(wine_processed, file.path(out_dir))
 }
 
 main(opt$input, opt$out_dir)

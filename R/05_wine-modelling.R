@@ -22,26 +22,13 @@ source("R/fit_linear_reg.R")
 
 opt <- docopt(doc)
 
-create_model <- function(input, out_dir_lm, out_dir_coef) {
+main <- function(input, out_dir_lm, out_dir_coef) {
   
   # Read in input
-  training <- read_csv(input)
+  wine_training <- read_csv(input)
   
   # Specify model
-  wine_lm_fit <- fit_linear_reg(quality ~ ., data = training)
-  
-  # lm_spec <- linear_reg() %>%
-  #   set_engine("lm") %>%
-  #   set_mode("regression")
-  # 
-  # # Setting up the recipe.
-  # wine_lm_recipe <- recipe(quality ~ ., data = training)
-  # 
-  # # Training the model.
-  # wine_lm_fit <- workflow() %>%
-  #   add_recipe(wine_lm_recipe) %>%
-  #   add_model(lm_spec) %>%
-  #   fit(data = training)
+  wine_lm_fit <- fit_linear_reg(quality ~ ., data = wine_training)
   
   # Pulling information of the coefficients in a tibble.
   wine_coeffs <- wine_lm_fit %>%
@@ -53,4 +40,4 @@ create_model <- function(input, out_dir_lm, out_dir_coef) {
   saveRDS(wine_lm_fit, file.path(out_dir_lm))
 }
   
-create_model(opt$input, opt$out_dir_lm, opt$out_dir_coef)
+main(opt$input, opt$out_dir_lm, opt$out_dir_coef)

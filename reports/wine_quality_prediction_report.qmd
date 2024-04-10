@@ -21,10 +21,10 @@ execute:
 ```{r}
 library(tidyverse)
 
-lm_accuracy <- read_csv("../results/lm_accuracy.csv")
-rmse_val <- round(lm_accuracy$.estimate[1], 2)
-mae_val <- round(lm_accuracy$.estimate[3], 2)
-r_squared_val <- round(lm_accuracy$.estimate[2], 2)
+wine_lm_accuracy <- read_csv("../results/wine_lm_accuracy.csv")
+rmse_val <- round(wine_lm_accuracy$.estimate[1], 2)
+mae_val <- round(wine_lm_accuracy$.estimate[3], 2)
+r_squared_val <- round(wine_lm_accuracy$.estimate[2], 2)
 ```
 
 ## Summary
@@ -49,8 +49,8 @@ The data was loaded from the UCI Machine Learning Repository. In @tbl-wine-previ
 #| label: tbl-wine-preview
 #| tbl-cap: Loaded dataset of wine quality.
 
-wine_raw <- read_csv("../data/wine_raw.csv")
-knitr::kable(head(wine_raw), digits=3, format="html",
+wine_processed <- read_csv("../data/wine_processed.csv")
+knitr::kable(head(wine_processed), digits=3, format="html",
              col.names=c("FA", "VA", "CA", "RS", 
                               "C", "F-SO2", "T-SO2", "D", 
                               "pH", "SO2-4", "ALC", "Quality"))
@@ -65,7 +65,7 @@ wine_training <- read_csv("../results/wine_training.csv")
 wine_testing <- read_csv("../results/wine_testing.csv")
 training_obs <- nrow(wine_training)
 testing_obs <- nrow(wine_testing)
-na_vals <- sum(is.na(wine_raw))
+na_vals <- sum(is.na(wine_processed))
 ```
 
 The data was split into a training set (75% of the dataset) and a testing set (the remaining 25%). Thus, the training set had `r training_obs` obervations and the testing set had `r testing_obs` observations. The training set was used to train our model. The testing set was used to validate the results of the created model.
@@ -78,8 +78,8 @@ The means of the independent variables for every level of the response variable 
 #| label: tbl-wine-means
 #| tbl-cap: Means for each level of the response variable "quality".
 
-response_means <- read_csv("../results/response_means.csv")
-knitr::kable(response_means, digits=3, format="html",
+wine_response_means <- read_csv("../results/wine_response_means.csv")
+knitr::kable(wine_response_means, digits=3, format="html",
              col.names=c("Quality", "FA", "VA", "CA",  
                          "RS", "C", "F-SO2", "T-SO2",  
                          "D", "pH", "SO2-4", "ALC"))
@@ -93,7 +93,7 @@ Before we began on the analysis, we wanted to visualize our dataset to get a gen
 
 One of the assumptions of MLR is normality. Without normality, it could affect the coefficient estimates obtained and standard errors would be inflated. We checked the distribution of each input variable through a histogram in @fig-histogram.
 
-![Histogram of the input variables, color-coded by their respective quality. In the last plot, histogram of each wine quality.](../results/wine-histogram.png){#fig-histogram width="60%"}
+![Histogram of the input variables, color-coded by their respective quality. In the last plot, histogram of each wine quality.](../results/wine_histogram.png){#fig-histogram width="60%"}
 
 Each of the qualities we analyzed are plotted together in @fig-histogram to get an understanding of several assumptions we are making. For some of them, (such as density, pH, volatile_acidity, etc), a normality assumption is reasonable. For others, (such as citric_acid, total_sulfur_dioxide, etc) it may be a bit harder to assume normality. Each of the different qualities are also coloured in, so the different densities among the quality levels can be visualized.
 
@@ -101,7 +101,7 @@ The very last plot is a visual for the count of how many wines are in each quali
 
 Next, we looked at how correlated the variables in the dataset are against each other in @fig-corr.
 
-![Correlation matrix of all variables.](../results/wine-correlation.png){#fig-corr width="60%"}
+![Correlation matrix of all variables.](../results/wine_correlation.png){#fig-corr width="60%"}
 
 @fig-corr suggests that the values all tend to be more independent of each other than some others. For quality, the values that are the most correlated appear to be volatile acidity and the alcohol content. This suggests that those may be the best predictors, and the others may be a bit weaker.
 
@@ -151,7 +151,7 @@ The model was tested on the testing set. The metrics from the model are in @tbl-
 #| label: tbl-lm-accuracy
 #| tbl-cap: Estimates of the model's performance on the testing set.
 
-knitr::kable(lm_accuracy)
+knitr::kable(wine_lm_accuracy)
 ```
 
 Our RMSPE is `r rmse_val` units of quality, which we deem to be a low value. Our mean absolute error is `r mae_val` units of quality, which we also deem to be a low value. Thus, we believe our model performs relatively well. However, our R\^2 is `r r_squared_val` which is a low number, indicating that our model does not fit the data as well as hoped.

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.540">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -25,7 +25,6 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -82,7 +81,7 @@ div.csl-indent {
   </ul></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="..\wine_quality_prediction_report.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="../wine_quality_prediction_report.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
 </div>
 <main class="content" id="quarto-document-content">
 
@@ -107,9 +106,7 @@ div.csl-indent {
   </div>
   
 
-
 </header>
-
 
 <section id="summary" class="level2">
 <h2 class="anchored" data-anchor-id="summary">Summary</h2>
@@ -125,16 +122,12 @@ div.csl-indent {
 <h2 class="anchored" data-anchor-id="methods">Methods</h2>
 <section id="preview-of-data" class="level3">
 <h3 class="anchored" data-anchor-id="preview-of-data">Preview of Data</h3>
-<p>The data was loaded from the UCI Machine Learning Repository. In <a href="#tbl-wine-preview" class="quarto-xref">Table&nbsp;1</a>, we can see a preview of the first six columns of the dataset.</p>
+<p>The data was loaded from the UCI Machine Learning Repository. In <a href="#tbl-wine-preview">Table&nbsp;1</a>, we can see a preview of the first six columns of the dataset.</p>
 <div class="cell">
-<div id="tbl-wine-preview" class="cell quarto-float anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-wine-preview-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;1: Loaded dataset of wine quality.
-</figcaption>
-<div aria-describedby="tbl-wine-preview-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<table class="do-not-create-environment cell table table-sm table-striped small" data-quarto-postprocess="true">
+<div id="tbl-wine-preview" class="anchored">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<caption>Table&nbsp;1: Loaded dataset of wine quality.</caption>
 <thead>
 <tr class="header">
 <th style="text-align: right;" data-quarto-table-cell-role="th">FA</th>
@@ -238,11 +231,9 @@ Table&nbsp;1: Loaded dataset of wine quality.
 </tr>
 </tbody>
 </table>
+</div>
 
 
-</div>
-</div>
-</figure>
 </div>
 </div>
 <p>Where FA is Fixed Acidity, VA is Volatile Acidity, CA is Citric Acid, RS is Residual Sugar, C is Chlorides, F-SO2 is Free Sulfur Dioxide, T-SO2 is Total Sulfur Dioxide, D is Density, pH is the potential of Hydrogen, SO2-4 is sulphates, and ALC is the alcohol content.</p>
@@ -251,16 +242,12 @@ Table&nbsp;1: Loaded dataset of wine quality.
 <h3 class="anchored" data-anchor-id="exploratory-data-analysis">Exploratory Data Analysis</h3>
 <p>The data was split into a training set (75% of the dataset) and a testing set (the remaining 25%). Thus, the training set had 1198 obervations and the testing set had 401 observations. The training set was used to train our model. The testing set was used to validate the results of the created model.</p>
 <p>There were also 0 missing values.</p>
-<p>The means of the independent variables for every level of the response variable “quality” were explored in <a href="#tbl-wine-means" class="quarto-xref">Table&nbsp;2</a>.</p>
+<p>The means of the independent variables for every level of the response variable “quality” were explored in <a href="#tbl-wine-means">Table&nbsp;2</a>.</p>
 <div class="cell">
-<div id="tbl-wine-means" class="cell quarto-float anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-wine-means-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;2: Means for each level of the response variable “quality”.
-</figcaption>
-<div aria-describedby="tbl-wine-means-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<table class="do-not-create-environment cell table table-sm table-striped small" data-quarto-postprocess="true">
+<div id="tbl-wine-means" class="anchored">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<caption>Table&nbsp;2: Means for each level of the response variable “quality”.</caption>
 <thead>
 <tr class="header">
 <th style="text-align: right;" data-quarto-table-cell-role="th">Quality</th>
@@ -364,57 +351,43 @@ Table&nbsp;2: Means for each level of the response variable “quality”.
 </tr>
 </tbody>
 </table>
+</div>
 
 
 </div>
 </div>
-</figure>
-</div>
-</div>
-<p>Where the columns are defined the same as in <a href="#tbl-wine-preview" class="quarto-xref">Table&nbsp;1</a>.</p>
+<p>Where the columns are defined the same as in <a href="#tbl-wine-preview">Table&nbsp;1</a>.</p>
 </section>
 <section id="exploratory-data-analysis-visualization" class="level3">
 <h3 class="anchored" data-anchor-id="exploratory-data-analysis-visualization">Exploratory Data Analysis Visualization</h3>
 <p>Before we began on the analysis, we wanted to visualize our dataset to get a general understanding of our data and check for valid assumptions and potential issues we have to alleviate later on.</p>
-<p>One of the assumptions of MLR is normality. Without normality, it could affect the coefficient estimates obtained and standard errors would be inflated. We checked the distribution of each input variable through a histogram in <a href="#fig-histogram" class="quarto-xref">Figure&nbsp;1</a>.</p>
-<div id="fig-histogram" class="quarto-figure quarto-figure-center quarto-float anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-histogram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../results/wine_histogram.png" class="img-fluid figure-img" style="width:60.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-histogram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Histogram of the input variables, color-coded by their respective quality. In the last plot, histogram of each wine quality.
-</figcaption>
+<p>One of the assumptions of MLR is normality. Without normality, it could affect the coefficient estimates obtained and standard errors would be inflated. We checked the distribution of each input variable through a histogram in <a href="#fig-histogram">Figure&nbsp;1</a>.</p>
+<div id="fig-histogram" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="../results/wine_histogram.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;1: Histogram of the input variables, color-coded by their respective quality. In the last plot, histogram of each wine quality.</figcaption>
 </figure>
 </div>
-<p>Each of the qualities we analyzed are plotted together in <a href="#fig-histogram" class="quarto-xref">Figure&nbsp;1</a> to get an understanding of several assumptions we are making. For some of them, (such as density, pH, volatile_acidity, etc), a normality assumption is reasonable. For others, (such as citric_acid, total_sulfur_dioxide, etc) it may be a bit harder to assume normality. Each of the different qualities are also coloured in, so the different densities among the quality levels can be visualized.</p>
+<p>Each of the qualities we analyzed are plotted together in <a href="#fig-histogram">Figure&nbsp;1</a> to get an understanding of several assumptions we are making. For some of them, (such as density, pH, volatile_acidity, etc), a normality assumption is reasonable. For others, (such as citric_acid, total_sulfur_dioxide, etc) it may be a bit harder to assume normality. Each of the different qualities are also coloured in, so the different densities among the quality levels can be visualized.</p>
 <p>The very last plot is a visual for the count of how many wines are in each quality level. Unfortunately, there does not appear to be a consistent count for each quality level, rather most of the wines in the dataset have qualities between 5 and 7. This could affect the performance of the model.</p>
-<p>Next, we looked at how correlated the variables in the dataset are against each other in <a href="#fig-corr" class="quarto-xref">Figure&nbsp;2</a>.</p>
-<div id="fig-corr" class="quarto-figure quarto-figure-center quarto-float anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-corr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../results/wine_correlation.png" class="img-fluid figure-img" style="width:60.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-corr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Correlation matrix of all variables.
-</figcaption>
+<p>Next, we looked at how correlated the variables in the dataset are against each other in <a href="#fig-corr">Figure&nbsp;2</a>.</p>
+<div id="fig-corr" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="../results/wine_correlation.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;2: Correlation matrix of all variables.</figcaption>
 </figure>
 </div>
-<p><a href="#fig-corr" class="quarto-xref">Figure&nbsp;2</a> suggests that the values all tend to be more independent of each other than some others. For quality, the values that are the most correlated appear to be volatile acidity and the alcohol content. This suggests that those may be the best predictors, and the others may be a bit weaker.</p>
+<p><a href="#fig-corr">Figure&nbsp;2</a> suggests that the values all tend to be more independent of each other than some others. For quality, the values that are the most correlated appear to be volatile acidity and the alcohol content. This suggests that those may be the best predictors, and the others may be a bit weaker.</p>
 </section>
 <section id="multiple-linear-rgression" class="level3">
 <h3 class="anchored" data-anchor-id="multiple-linear-rgression">Multiple Linear Rgression</h3>
 <p>We specified a linear regression model and then a recipe. In the recipe, we stated “quality” as our response variable, and the other 11 variables as input variables. We then set up the workflow and trained the model using our training set.</p>
-<p>In <a href="#tbl-coeffs" class="quarto-xref">Table&nbsp;3</a>, we can see the obtained coefficients from the model:</p>
+<p>In <a href="#tbl-coeffs">Table&nbsp;3</a>, we can see the obtained coefficients from the model:</p>
 <div class="cell">
-<div id="tbl-coeffs" class="cell quarto-float anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-coeffs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3: Summary of the coefficients from the linear regression with their respective standard error, statistic, and p-value.
-</figcaption>
-<div aria-describedby="tbl-coeffs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<table class="do-not-create-environment cell table table-sm table-striped small">
+<div id="tbl-coeffs" class="anchored">
+<table class="table table-sm table-striped small">
+<caption>Table&nbsp;3: Summary of the coefficients from the linear regression with their respective standard error, statistic, and p-value.</caption>
 <thead>
 <tr class="header">
 <th style="text-align: left;">term</th>
@@ -513,10 +486,8 @@ Table&nbsp;3: Summary of the coefficients from the linear regression with their 
 </table>
 </div>
 </div>
-</figure>
 </div>
-</div>
-<p>From <a href="#tbl-coeffs" class="quarto-xref">Table&nbsp;3</a>, we can see that most of our input variables are statistically significant, as their p-values are &lt; 0.05. However, a couple have p-values that are &gt; 0.05, and thus, are not statistically significant.</p>
+<p>From <a href="#tbl-coeffs">Table&nbsp;3</a>, we can see that most of our input variables are statistically significant, as their p-values are &lt; 0.05. However, a couple have p-values that are &gt; 0.05, and thus, are not statistically significant.</p>
 <ul>
 <li>Significant: fixed acidity, sulphates, alcohol, volatile acidity, chlorides, total sulfur dioxide, and density.</li>
 <li>Non-significant: residual sugar, citric acid, free sulfur dioxide, and pH.</li>
@@ -528,16 +499,12 @@ Table&nbsp;3: Summary of the coefficients from the linear regression with their 
 <li>Positively correlated: fixed acidity, residual sugar, free sulfur dioxide, sulphates, and alcohol.</li>
 <li>Negatively correlated: volatile acidity, citric acid, chlorides, total sulfur dioxide, density, and pH.</li>
 </ul>
-<p>The model was tested on the testing set. The metrics from the model are in <a href="#tbl-lm-accuracy" class="quarto-xref">Table&nbsp;4</a>.</p>
+<p>The model was tested on the testing set. The metrics from the model are in <a href="#tbl-lm-accuracy">Table&nbsp;4</a>.</p>
 <div class="cell">
-<div id="tbl-lm-accuracy" class="cell quarto-float anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-lm-accuracy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;4: Estimates of the model’s performance on the testing set.
-</figcaption>
-<div aria-describedby="tbl-lm-accuracy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<table class="do-not-create-environment cell table table-sm table-striped small">
+<div id="tbl-lm-accuracy" class="anchored">
+<table class="table table-sm table-striped small">
+<caption>Table&nbsp;4: Estimates of the model’s performance on the testing set.</caption>
 <thead>
 <tr class="header">
 <th style="text-align: left;">.metric</th>
@@ -565,22 +532,16 @@ Table&nbsp;4: Estimates of the model’s performance on the testing set.
 </table>
 </div>
 </div>
-</figure>
-</div>
 </div>
 <p>Our RMSPE is 0.67 units of quality, which we deem to be a low value. Our mean absolute error is 0.52 units of quality, which we also deem to be a low value. Thus, we believe our model performs relatively well. However, our R^2 is 0.32 which is a low number, indicating that our model does not fit the data as well as hoped.</p>
-<p>To assess the validity of our model, we plotted a QQ plot where the theoretical quantiles are plotted against the sample quantiles. This plot shows the normality distribution. A QQ-plot with a straight line would be the ideal one. Our resulting QQ-plot is in <a href="#fig-qq" class="quarto-xref">Figure&nbsp;3</a>.</p>
-<div id="fig-qq" class="quarto-figure quarto-figure-center quarto-float anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-qq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../results/wine_lm_qq_plot.png" class="img-fluid figure-img" style="width:50.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-qq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: Correlation matrix of all variables.
-</figcaption>
+<p>To assess the validity of our model, we plotted a QQ plot where the theoretical quantiles are plotted against the sample quantiles. This plot shows the normality distribution. A QQ-plot with a straight line would be the ideal one. Our resulting QQ-plot is in <a href="#fig-qq">Figure&nbsp;3</a>.</p>
+<div id="fig-qq" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="../results/wine_lm_qq_plot.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;3: Correlation matrix of all variables.</figcaption>
 </figure>
 </div>
-<p>As seen, <a href="#fig-qq" class="quarto-xref">Figure&nbsp;3</a> appears to follow a straight line. There does appear to be a dip from the line near quantiles = 0, and a few outliers (173 and 113), but overall, the normality assumption on our data is reasonable.</p>
+<p>As seen, <a href="#fig-qq">Figure&nbsp;3</a> appears to follow a straight line. There does appear to be a dip from the line near quantiles = 0, and a few outliers (173 and 113), but overall, the normality assumption on our data is reasonable.</p>
 </section>
 </section>
 <section id="discussion" class="level2">
@@ -589,7 +550,7 @@ Figure&nbsp;3: Correlation matrix of all variables.
 <h3 class="anchored" data-anchor-id="summary-and-expectations">Summary and Expectations</h3>
 <p>The purpose of this project was to determine if it was possible to predict red wine quality through a set of 11 physicochemical variables. We applied a multiple linear regression on a public-use dataset to discover how each property affects the quality of wine. Splitting the dataset into a 75/25 training/testing split, and applying a specified recipe for a multivariate regression, we obtained decent RMSPE and MAE values of 0.67 and 0.52 respectively, but a mediocre R-squared value of 0.32.</p>
 <p>We discover that the fixed acidity, residual sugar, free sulphur dioxide, sulphates, and the alcohol properties tend to increase the wine quality, while the volatile acidity, citric acid, chlorides, total sulphur dioxide, density, and pH properties tend to reduce the wine quality. Furthermore, only fixed acidity, sulphates, alcohol, volatile acidity, chlorides, total sulfur dioxide, and density were deemed to be significant predictors.</p>
-<p>From <a href="#fig-corr" class="quarto-xref">Figure&nbsp;2</a>, it was expected that alcohol and volatile acidity would be significant predictors for quality. And in fact, these variables were statistically significant as their p values was &lt; 0.05. However, the model’s fit performed worse than expected, with a very low R-squared value.</p>
+<p>From <a href="#fig-corr">Figure&nbsp;2</a>, it was expected that alcohol and volatile acidity would be significant predictors for quality. And in fact, these variables were statistically significant as their p values was &lt; 0.05. However, the model’s fit performed worse than expected, with a very low R-squared value.</p>
 </section>
 <section id="impacts-and-future-questions" class="level3">
 <h3 class="anchored" data-anchor-id="impacts-and-future-questions">Impacts and Future Questions</h3>
@@ -603,7 +564,7 @@ Figure&nbsp;3: Correlation matrix of all variables.
 
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-CORTEZ2009547" class="csl-entry" role="listitem">
 Cortez, Paulo, A. Cerdeira, F. Almeida, T. Matos, and J. Reis. 2009a. <span>“Modeling Wine Preferences by Data Mining from Physicochemical Properties.”</span> <em>Decision Support Systems</em> 47 (4): 547–53. https://doi.org/<a href="https://doi.org/10.1016/j.dss.2009.05.016">https://doi.org/10.1016/j.dss.2009.05.016</a>.
 </div>
@@ -700,9 +661,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+  function tippyHover(el, contentFn) {
     const config = {
       allowHTML: true,
+      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -712,17 +674,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start',
+      placement: 'bottom-start'
     };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -735,120 +688,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
-          }
-        }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
-        }
-        return container.innerHTML
-      } else {
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(note);
-        }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      return note.innerHTML;
-    }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
-          }
-        } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
-          .then(res => res.text())
-          .then(html => {
-            const parser = new DOMParser();
-            const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
-            if (note !== null) {
-              const html = processXRef(id, note);
-              instance.setContent(html);
-            } 
-          }).finally(() => {
-            instance.enable();
-            instance.show();
-          });
-        }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -892,7 +731,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
-            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -918,32 +756,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1004,7 +816,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-
 
 
 

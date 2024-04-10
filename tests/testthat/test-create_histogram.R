@@ -3,6 +3,27 @@ library(tidyverse)
 library(vdiffr)
 source("../../R/create_histogram.R")
 
+test_that("Function should produce an error if incorrect types are passed into each of the arguments", {
+
+  expect_error(create_histogram(df="yo", x=speed, group=group))
+
+  plot2 <- create_histogram(df=simple_dataset, x="wassup", group=group)
+  expect_error(print(plot2))
+  
+  plot3 <- create_histogram(df=simple_dataset, x=speed, group=gamers)
+  expect_error(print(plot3))
+
+  plot4 <- create_histogram(df=simple_dataset, x=speed, group=group, x_lab = df)
+  expect_error(print(plot4))
+  
+  plot5 <- create_histogram(df=simple_dataset, x=speed, group=group, font_size = "no")
+  expect_error(print(plot5))
+}) 
+
+test_that("Function should return a ggplot", {
+  expect_s3_class(simple_histogram, "ggplot")
+})
+
 test_that("Plot should use geom_bar and map x to x-axis, and the grouping are of the same colours", {
   expect_true("GeomBar" %in% c(class(simple_histogram$layers[[1]]$geom)))
   expect_true("speed" == rlang::get_expr(simple_histogram$mapping$x))

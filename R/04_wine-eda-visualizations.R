@@ -21,13 +21,13 @@ source("R/create_histogram.R")
 
 opt <- docopt(doc)
 
-create_visualizations <- function(input, out_dir_hist, out_dir_corr) {
+main <- function(input, out_dir_hist, out_dir_corr) {
   
   # Read in input file
-  wine_train <- read_csv(input)
+  wine_training <- read_csv(input)
   
   # Converting quality as a categorical factor.
-  wine_train_categorical <- wine_train %>%
+  wine_train_categorical <- wine_training %>%
     mutate(quality = as.factor(quality))
   
   # Setting font size.
@@ -105,7 +105,7 @@ create_visualizations <- function(input, out_dir_hist, out_dir_corr) {
                                    font_size = font_size)
   
   # Plotting a histogram plot of the response variable, quality.
-  quality_hist <- wine_train %>%
+  quality_hist <- wine_training %>%
     ggplot(aes(x = quality)) +
     geom_histogram(aes(fill = as.factor(quality))) + 
     xlab("Quality")+
@@ -135,7 +135,7 @@ create_visualizations <- function(input, out_dir_hist, out_dir_corr) {
   ggsave(file.path(out_dir_hist), histogram)
   
   # Creating the correlation matrix
-  wine_cors <- cor(wine_train)
+  wine_cors <- cor(wine_training)
   
   # Change variable labels
   colnames(wine_cors) <- c("Fixed acidity", "Volatile acidity", "Citric acid", "Residual sugar", "Chlorides",
@@ -152,4 +152,4 @@ create_visualizations <- function(input, out_dir_hist, out_dir_corr) {
   dev.off()
 }
 
-create_visualizations(opt$input, opt$out_dir_hist, opt$out_dir_corr)
+main(opt$input, opt$out_dir_hist, opt$out_dir_corr)

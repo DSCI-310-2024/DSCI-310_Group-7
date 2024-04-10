@@ -3,9 +3,11 @@ Authors: Rui Xiang Yu, Rico Chan & Kevin Yu
 Course: DSCI 310, 2024 Winter Term 2
 
 ## About
-This project attempts to build a multiple linear regression model to analyze different physiochemical properties of red wine and understand which properties affect the quality of wine positively. Splitting the dataset into a 75/25 training/testing split, and applying a specified recipe for a multivariate regression, we obtained decent RMSE and MAE values of 0.67 and 0.52 respectively, but a mediocre R-squared value of 0.32. We discover that the fixed acidity, residual sugar, free sulphur dioxide, sulphates, and alcohol properties tend to increase the wine quality, while the volatile acidity, citric acid, chlorides, total sulphur dioxide, density, and pH properties tend to reduce the wine quality.
+The wine industry remains strong worldwide, and numerous technological innovations have support its growth, especially in the realms of certification and quality assessment. One prominent innovation is the use of rigorous laboratory testing to produce data relating the physiochemical properties of wine to abstract human sensory perceptions.
 
-The data used for this project is [from the UCI Machine Learning Repository, created by Cortez et al. (2009)](https://doi.org/10.24432/C56S3T). The dataset comprises of 12 variables (11 physicochemical indicators and 1 quality indicator) and contains 1599 instances of red vinho verde, a popular wine from Portugal. Each instance of wine was assessed by at least three [sensory assessors](https://www.sensorysociety.org/knowledge/sspwiki/Pages/assessor.aspx) and scored on a ten-point scale that ranges from "very bad" to "excellent"; the wine quality for each instance is determined by the median of these scores. 
+This project attempts to leverage such data by building a multiple linear regression model to analyze different physiochemical properties of red wine and understand which properties affect the quality of wine positively. Splitting the dataset into a 75/25 training/testing split, and applying a specified recipe for a multivariate regression, we obtained decent RMSE and MAE values of 0.67 and 0.52 respectively, but a mediocre R-squared value of 0.32. We discover that the fixed acidity, residual sugar, free sulphur dioxide, sulphates, and alcohol properties tend to increase the wine quality, while the volatile acidity, citric acid, chlorides, total sulphur dioxide, density, and pH properties tend to reduce the wine quality.
+
+The data used for this project is [from the UCI Machine Learning Repository, created by Cortez et al. (2009)](https://doi.org/10.24432/C56S3T). The dataset comprises of 12 variables (11 physicochemical indicators and 1 quality indicator) and contains 1599 instances of red vinho verde, a popular wine from Portugal. Each instance of wine was assessed by at least three [sensory assessors](https://www.sensorysociety.org/knowledge/sspwiki/Pages/assessor.aspx) and scored on a ten-point scale that ranges from "very bad" to "excellent"; the wine quality was then determined by the median of these scores. 
 
 ## Report
 The final reports can be found [here](https://github.com/DSCI-310-2024/dsci-310_group-7_wine-quality-prediction/tree/main/reports).
@@ -13,32 +15,33 @@ The final reports can be found [here](https://github.com/DSCI-310-2024/dsci-310_
 ## Usage
 To set up the repository and reproduce the analysis, please follow these steps:
 1.  Clone the repository. Paste this code onto your terminal:
-   ```
-   git clone https://github.com/DSCI-310-2024/dsci-310_group-7_wine-quality-prediction.git
-   ```
+```
+git clone https://github.com/DSCI-310-2024/dsci-310_group-7_wine-quality-prediction.git
+```
 2. Navigate to the root of the repository through the ```cd``` command on your terminal.
-3. Download [Docker](https://docs.docker.com/desktop/install/mac-install/) and ensure it is running. Paste the following code onto your terminal:
-   ```
-   docker-compose up
-   ```
+3. Download [Docker](https://docs.docker.com/desktop/install/mac-install/) and ensure it is running. Paste the following code into your terminal:
+```
+docker-compose up
+```
 4. Open your browser and go to [http://localhost:8787/](http://localhost:8787/).
 5. Type in "rstudio" as the username and "group7wine" as the password.
-6. Make sure the RStudio's terminal and R console are both at the /workspace folder (NOT the /bin folder) through:
-   ```
-   cd workspace
-   ```
-7. To test all the unique R functions in this analysis, paste the folliwing into the R console:
-   ```
-   testthat::test_dir("tests/testthat")
-   ```
-9. On the terminal, paste the following in order to remove the created files and reports:
-   ```
-   make clean
-   ```
-10. On the terminal, paste the following in order to re-create the files and reports:
-   ```
-   make all
-   ```
+6. Make sure the RStudio's terminal and R console are both at the `/workspace` folder (NOT the `/bin` folder).
+> In the terminal, paste:
+```
+cd workspace
+```
+> In the console, paste:
+```
+setwd("~/workspace")
+```
+8. On the terminal, paste the following in order to remove the created files and reports:
+```
+make clean
+```
+9. On the terminal, paste the following in order to re-create the files and reports:
+```
+make all
+```
    
 ## Dependencies
 - [Docker](https://www.docker.com/) is used to virtualise the software dependencies for this project. The Docker image for this project is built from the `rocker/tidyverse:4.3.2` image. Additional dependencies are detailed in the [`Dockerfile`](Dockerfile).

@@ -25,7 +25,15 @@ docker-compose up
 ```
 4. Open your browser and go to [http://localhost:8787/](http://localhost:8787/).
 5. Type in "rstudio" as the username and "group7wine" as the password.
-6. Make sure the RStudio's terminal and R console are both at the `/workspace` folder (NOT the `/bin` folder).
+6. On the terminal, paste the following in order to remove the created files and reports:
+```
+make clean
+```
+7. On the terminal, paste the following in order to re-create the files and reports:
+```
+make all
+```
+Note: for future contributors (please read [CONTRIBUTING](https://github.com/DSCI-310-2024/dsci-310_group-7_wine-quality-prediction/blob/main/CONTRIBUTING.md)), it would be wise to make sure the RStudio's terminal and R console are both at the `/workspace` folder (NOT the `/bin` folder).
 > In the terminal, paste:
 ```
 cd workspace
@@ -34,15 +42,7 @@ cd workspace
 ```
 setwd("~/workspace")
 ```
-8. On the terminal, paste the following in order to remove the created files and reports:
-```
-make clean
-```
-9. On the terminal, paste the following in order to re-create the files and reports:
-```
-make all
-```
-   
+
 ## Dependencies
 - [Docker](https://www.docker.com/) is used to virtualise the software dependencies for this project. The Docker image for this project is built from the `rocker/tidyverse:4.3.2` image. Additional dependencies are detailed in the [`Dockerfile`](Dockerfile).
 

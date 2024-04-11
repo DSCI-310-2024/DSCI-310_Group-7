@@ -2,7 +2,6 @@ FROM rocker/tidyverse:4.3.2
 
 RUN apt-get update -qq && apt-get -y --no-install-recommends install \
     && install2.r --error --skipmissing --deps TRUE --skipinstalled \
-        tidyverse \
         car \
         corrplot \
         cowplot \
@@ -10,8 +9,9 @@ RUN apt-get update -qq && apt-get -y --no-install-recommends install \
         knitr \
         kableExtra \
         testthat \
-        vdiffr \
-        docopt
+        vdiffr 
+        
+RUN installGithub.r DSCI-310-2024/pRedictwine
 
 USER rstudio
 

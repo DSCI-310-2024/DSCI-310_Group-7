@@ -1,5 +1,5 @@
 # Author: Rico Chan, Rui Xiang Yu, Kevin Yu
-# Date: 2023 March 10
+# Date: 2024 March 10
 
 "This script downloads the red wine quality dataset and the basic EDA required 
 from the UCI Machine Learning Repository
@@ -13,7 +13,7 @@ from the UCI Machine Learning Repository
 
 library(tidyverse)
 library(docopt)
-source("R/load_data_function.R")
+library(pRedictwine)
 
 opt <- docopt(doc)
 

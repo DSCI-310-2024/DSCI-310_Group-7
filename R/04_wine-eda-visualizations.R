@@ -17,7 +17,7 @@ library(cowplot)
 library(car)
 library(corrplot)
 library(docopt)
-source("R/create_histogram.R")
+library(pRedictwine)
 
 opt <- docopt(doc)
 

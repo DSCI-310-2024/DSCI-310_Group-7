@@ -17,8 +17,7 @@ library(cowplot)
 library(car)
 library(corrplot)
 library(docopt)
-
-source("R/fit_linear_reg.R")
+library(pRedictwine)
 
 opt <- docopt(doc)
 

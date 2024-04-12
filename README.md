@@ -1,6 +1,7 @@
 # Predicting Wine Quality Using Multiple Linear Regression
 
-Authors: Rui Xiang Yu, Rico Chan & Kevin Yu Course: DSCI 310, 2024 Winter Term 2
+Authors: Rui Xiang Yu, Rico Chan & Kevin Yu  
+Course: DSCI 310, 2024 Winter Term 2
 
 ## About
 
@@ -16,7 +17,8 @@ The final reports can be found [here](https://github.com/DSCI-310-2024/dsci-310_
 
 ## Usage
 
-To set up the repository and reproduce the analysis, please follow these steps: 1. Clone the repository. Paste this code onto your terminal:
+To set up the repository and reproduce the analysis, please follow these steps:
+1. Clone the repository. Paste this code onto your terminal:
 
 ```         
 git clone https://github.com/DSCI-310-2024/dsci-310_group-7_wine-quality-prediction.git
@@ -59,7 +61,7 @@ setwd("~/workspace")
 
 ## Dependencies
 
--   [Docker](https://www.docker.com/) is used to virtualise the software dependencies for this project. The Docker image for this project is built from the `rocker/tidyverse:4.3.2` image. Additional dependencies are detailed in the [`Dockerfile`](Dockerfile).
+[Docker](https://www.docker.com/) is used to virtualise the software dependencies for this project. The Docker image for this project is built from the `rocker/tidyverse:4.3.2` image. Additional dependencies are detailed in the [`Dockerfile`](Dockerfile).
 
 ## License
 
